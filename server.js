@@ -7,9 +7,9 @@ const app = express();
 
 connectDB();
 
-app.get("/", (req, res) => {
-  return res.status(200).send("API Running");
-});
+app.get("/", (req, res) => res.send("API Running"));
+
+app.use("/api/test", require("./routes/api/test"));
 
 const PORT = process.env.PORT || 5000;
 
