@@ -1,0 +1,55 @@
+.head {
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  flex-direction: column;
+}
+
+.mainHeader {
+  width: 100%;
+  height: 8rem;
+  display: block;
+  justify-content: center;
+  padding: 15px;
+  background: #fff;
+  box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
+  position: relative;
+}
+
+.image {
+  width: 180px;
+  height: 120px;
+  cursor: pointer;
+}
+
+.data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.dataRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 30%;
+}
+
+.icon {
+  font-size: 1.4rem;
+  margin-top: 5px;
+}
+
+.dataText {
+  font-size: 1rem;
+  text-align: center;
+}
+
+.headerContent {
+  width: 60%;
+  align-self: center;
+}

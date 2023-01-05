@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Asap+Condensed&family=Carter+One&family=Rubik+Gemstones&family=Sevillana&display=swap");
+
+.container {
+  margin-top: 30px;
+}
+
+.submitContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+  height: 5rem;
+}
+
+.submitBtn {
+  background: var(--secondary-color);
+  transform: scale(1);
+  width: 25%;
+  height: 2.4rem;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  border: #000 solid 2px;
+  color: #fff;
+  font-family: arial, sans-serif;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: all 1s;
+}
+
+.submitBtn:hover {
+  background: var(--green-color);
+  transform: scale(1.2);
+  transition: all 1s;
+}
+
+.submitBtn:hover:active,
+.submitBtn:active {
+  box-shadow: 0 0px #666;
+  transform: translateY(4px);
+}
+
+.close {
+  color: red;
+  margin-left: 15px;
+  cursor: pointer;
+}

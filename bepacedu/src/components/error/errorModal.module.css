@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;1,400&family=Oswald:wght@500&display=swap");
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.modal {
+  position: fixed;
+  top: 30vh;
+  left: 10%;
+  width: 80%;
+  z-index: 100;
+  overflow: hidden;
+  box-shadow: 8px 9px 5px -6px rgba(255, 255, 255, 0.75);
+  -webkit-box-shadow: 8px 9px 5px -6px rgba(255, 255, 255, 0.75);
+  -moz-box-shadow: 8px 9px 5px -6px rgba(255, 255, 255, 0.75);
+}
+
+.header {
+  background: var(--secondary-color);
+  padding: 1rem;
+}
+
+.header h2 {
+  margin: 0;
+  color: white;
+  font-family: "Oswald", sans-serif;
+}
+
+.content {
+  padding: 1rem;
+  background: #fff;
+}
+
+.actions {
+  padding: 1rem;
+  display: flex;
+  justify-content: flex-end;
+  background-color: var(--solid-color);
+}
+
+.button {
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  width: 5rem;
+  height: 2rem;
+  background: #000;
+  color: #fff;
+  font-size: 1.1rem;
+  font-family: "Oswald", sans-serif;
+  cursor: pointer;
+}
+
+.message {
+  font-size: 1.4rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    left: calc(50% - 20rem);
+    width: 40rem;
+  }
+}

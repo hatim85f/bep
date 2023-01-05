@@ -1,0 +1,6 @@
+{
+  "mongoURI": "mongodb+srv://hatim85f:hatim8411@cluster0.ytk4x02.mongodb.net/?retryWrites=true&w=majority",
+  "githubClientId": "9cde11af956de4c2334f",
+  "githubSecret": "4bd0d4101a0e464b8c9cf58286e6e5780c40dbd8",
+  "jwtSecret": "mysecrettoken"
+}

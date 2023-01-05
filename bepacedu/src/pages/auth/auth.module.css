@@ -1,0 +1,50 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container strong {
+  font-size: 1.5rem;
+  margin-top: 25px;
+}
+
+.form {
+  width: 30%;
+  margin-top: 25px;
+  border: var(--primary-color) solid 2.5px;
+  padding: 15px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.error {
+  color: var(--secondary-color);
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.btn {
+  width: 30%;
+  height: 2.5rem;
+  outline: none;
+  border: #000 solid 1.5px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  background: var(--primary-color);
+  font-weight: bold;
+  font-size: 1.2rem;
+}

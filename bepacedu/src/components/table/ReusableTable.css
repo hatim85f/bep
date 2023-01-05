@@ -1,0 +1,127 @@
+table {
+  width: 90%;
+  align-self: center;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+  text-align: center;
+  border: var(--green-color) solid 0.5px;
+  height: 3.5rem;
+}
+tr:nth-child(odd),
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+tfoot,
+th {
+  background-color: var(--green-color);
+  color: #000;
+}
+
+.pagination {
+  display: flex;
+  width: 90%;
+  align-self: center;
+  border-radius: 15px;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  height: 3rem;
+  padding: 10px;
+  border: var(--table-color) solid 2.5px;
+  background: var(--secondary-color);
+}
+
+.pagination select {
+  outline: none;
+  height: 2rem;
+  width: 14rem;
+  text-align: center;
+  color: navy;
+  font-weight: bold;
+  font-size: 1rem;
+  border: var(--table-color) solid 1px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.paginationButton {
+  outline: none;
+  background: var(--table-color);
+  width: 10%;
+  border-radius: 15px;
+  height: 2rem;
+  border: #000 solid;
+  color: #000;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.paginationButton:disabled {
+  background: #888;
+  border: none;
+}
+
+.pagination input {
+  outline: none;
+  border: #fff solid 2.5px;
+  border-radius: 15px;
+  background: rgb(160, 230, 214);
+  height: 2rem;
+  color: navy;
+  text-align: center;
+}
+
+.pages {
+  color: navy;
+}
+
+.icon i {
+  color: navy;
+}
+
+.delete {
+  background: red;
+}
+
+.img {
+  width: 5rem;
+  height: 5rem;
+}
+
+tr:hover {
+  background-color: rgb(89, 227, 242);
+  cursor: pointer;
+}
+
+.select {
+  outline: none;
+  border: #fff solid 1.5px;
+  width: 100%;
+  text-align: center;
+  height: 1.8rem;
+  border-radius: 8px;
+  color: #fff;
+  background: rgb(11, 150, 243);
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.select::placeholder {
+  color: #fff;
+}
+
+.options {
+  background: var(--table-color);
+  cursor: pointer;
+  margin-top: 5px;
+  letter-spacing: 0.5rem;
+  font-size: 1rem;
+  border-bottom: #fff dotted 1.5px;
+}
