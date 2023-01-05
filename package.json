@@ -8,7 +8,7 @@
     "server": "nodemon server",
     "bepacedu": "npm start --prefix bepacedu",
     "dev": "concurrently \" npm run server \" \"npm run bepacedu\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix bepac && npm run build --prefix bepacedu"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix bepacedu && npm run build --prefix bepacedu"
   },
   "repository": {
     "type": "git",
