@@ -13,7 +13,6 @@ import {
 
 import { useSelector, useDispatch } from "react-redux";
 
-import * as helpersActions from "../../store/helpers/helpersActions";
 import * as authActions from "../../store/auth/authActions";
 
 import useInput from "../../hooks/use-input";
@@ -33,7 +32,6 @@ const Registeration = () => {
   const [careerAspiration, setCareerAspiration] = useState("");
   const [courses, setCourses] = useState([]);
   const [source, setSource] = useState("");
-  const [sourcePerson, setSourcePerson] = useState("");
 
   const isNotEmpty = (value) => value.trim() !== "";
   const isEmail = (value) => value.includes("@");

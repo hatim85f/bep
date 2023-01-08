@@ -13,6 +13,7 @@ const Input = (props) => {
         <input
           id="inpt"
           className={classes.input}
+          onKeyDown={props.onEnded}
           onChange={(e) => props.onChange(e.target.value)}
           placeholder={props.placeholder}
           {...props}

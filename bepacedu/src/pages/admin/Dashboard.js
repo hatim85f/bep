@@ -74,7 +74,9 @@ const Dashboard = () => {
           <ItemCard
             title="Courses"
             image={courses}
-            onClick={() => {}}
+            onClick={() =>
+              navigate("/admin/courses", { state: { color: "#c2dbdc" } })
+            }
             color="#c2dbdc"
           />
           <ItemCard

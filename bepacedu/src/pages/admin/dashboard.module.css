@@ -109,3 +109,32 @@
   font-family: "Anton", sans-serif;
   transition: all 0.5s;
 }
+
+.logOut {
+  width: 20%;
+  outline: none;
+  height: 2.8rem;
+  border-radius: 8px;
+  background: #93b7be;
+  border: #666 solid 2.5px;
+  font-size: 1.4rem;
+  font-style: italic;
+  font-weight: bold;
+  box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  margin-bottom: 20vh;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.logOut:hover {
+  width: 25%;
+  background: var(--solid-color);
+  color: var(--secondary-color);
+}
+
+.logOut:active {
+  box-shadow: 0 0px #666;
+  transform: translateY(4px);
+}

@@ -224,6 +224,9 @@ const ManageUsers = () => {
             </div>
           </DataCard>
         )}
+        <DataCard>
+          Payments / History / Courses and status per Course / wish list
+        </DataCard>
       </div>
     </div>
   );

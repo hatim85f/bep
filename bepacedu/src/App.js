@@ -6,6 +6,8 @@ import ManageUsers from "./pages/admin/ManageUsers";
 import ShowUsers from "./pages/admin/ShowUsers";
 import AdminAuth from "./pages/auth/AdminAuth";
 import Registeration from "./pages/registeration/Registeration";
+import CoursesData from "./pages/admin/CoursesData";
+
 function App() {
   return (
     <Routes>
@@ -16,6 +18,7 @@ function App() {
       <Route path="/users" element={<ShowUsers />} />
       <Route path="/users/add_users" element={<AddUsers />} />
       <Route path="/users/manage" element={<ManageUsers />} />
+      <Route path="/admin/courses" element={<CoursesData />} />
     </Routes>
   );
 }

@@ -2,59 +2,85 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const model = mongoose.model;
 
-const CourseSchema = Schema({
+const CoursesSchema = Schema({
   name: {
     type: String,
     required: true,
   },
-  targeted_people: [
+  description: {
+    tpye: String,
+  },
+  image: {
+    type: String,
+    required: true,
+  },
+  abbreviation: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  offerPrice: {
+    type: Number,
+  },
+  learningObjective: {
+    title: {
+      type: String,
+    },
+    objectives: {
+      type: Array,
+    },
+  },
+  modules: [
     {
-      type: mongoose.Types.ObjectId,
+      moduleName: {
+        type: String,
+      },
+      points: {
+        type: Array,
+      },
+    },
+  ],
+  numberOfSessions: {
+    type: Number,
+    required: true,
+  },
+  numberOfHours: {
+    type: Number,
+    required: true,
+  },
+  frequency: {
+    type: String,
+    required: true,
+  },
+  brochure: {
+    type: String,
+  },
+  targetedPeople: [
+    {
+      type: Schema.Types.ObjectId,
       ref: "user",
     },
   ],
-  users_planned: [
+  activeUsers: [
     {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "user",
     },
   ],
-  attended: [
+  completedUsers: [
     {
-      type: mongoose.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "user",
     },
   ],
-  completed: [
-    {
-      type: mongoose.Types.ObjectId,
-      ref: "user",
-    },
-  ],
+  targetedParticipants: {
+    type: String,
+  },
   category: {
     type: String,
-    required: true,
-  },
-  currentPrice: {
-    type: Number,
-    required: true,
-  },
-  offer_price: {
-    type: Number,
-  },
-  duration: {
-    type: String,
-    required: true,
-  },
-  sessions_number: {
-    type: Number,
-    required: true,
-  },
-  question: {
-    type: Array,
-  },
-  comments: {
-    type: Array,
   },
 });
 
