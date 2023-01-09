@@ -21,7 +21,7 @@ export const getCourses = () => {
 
     dispatch({
       type: GET_COURSES,
-      courses: resData.course,
+      courses: resData.courses,
     });
   };
 };
@@ -48,8 +48,6 @@ export const addCourses = (course) => {
         message: resData.message,
       });
     }
-
-    console.log(course);
 
     dispatch({
       type: ADD_COURSES,

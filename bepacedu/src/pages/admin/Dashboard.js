@@ -66,9 +66,9 @@ const Dashboard = () => {
             color="#c2dbdc"
           />
           <ItemCard
-            title="New Customers"
+            title="Groups"
             image={customers}
-            onClick={() => {}}
+            onClick={() => navigate("/admin/groups")}
             color="#93b7be"
           />
           <ItemCard

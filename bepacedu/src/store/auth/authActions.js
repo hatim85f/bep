@@ -25,6 +25,7 @@ export const getUserBack = (user, token) => {
       token: token,
       adminType: user.adminType,
       _id: user._id,
+      isAdmin: user.isAdmin,
     });
   };
 };
@@ -96,6 +97,7 @@ export const login = (email, password) => {
       lastName: user.lastName,
       token: token,
       adminType: user.adminType,
+      isAdmin: user.isAdmin,
       _id: user._id,
     });
   };

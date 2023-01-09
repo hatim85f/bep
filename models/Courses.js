@@ -35,7 +35,7 @@ const CoursesSchema = Schema({
   },
   modules: [
     {
-      moduleName: {
+      title: {
         type: String,
       },
       points: {

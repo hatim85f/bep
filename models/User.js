@@ -96,6 +96,10 @@ const UserSchema = Schema({
     type: String,
     default: "Pending",
   },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = User = mongoose.model("user", UserSchema);

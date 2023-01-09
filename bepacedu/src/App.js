@@ -7,6 +7,8 @@ import ShowUsers from "./pages/admin/ShowUsers";
 import AdminAuth from "./pages/auth/AdminAuth";
 import Registeration from "./pages/registeration/Registeration";
 import CoursesData from "./pages/admin/CoursesData";
+import CoursesShow from "./pages/admin/CoursesShow";
+import Groups from "./pages/admin/Groups";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
       <Route path="/users/add_users" element={<AddUsers />} />
       <Route path="/users/manage" element={<ManageUsers />} />
       <Route path="/admin/courses" element={<CoursesData />} />
+      <Route path="/admin/courses/course_details" element={<CoursesShow />} />
+      <Route path="admin/groups" element={<Groups />} />
     </Routes>
   );
 }

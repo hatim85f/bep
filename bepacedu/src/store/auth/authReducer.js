@@ -9,6 +9,7 @@ const initialState = {
   adminType: null,
   userEmail: "",
   _id: "",
+  isAdmin: false,
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -22,6 +23,7 @@ export const authReducer = (state = initialState, action) => {
         adminType: action.adminType,
         _id: action._id,
         userEmail: action.userEmail,
+        isAdmin: action.isAdmin,
       };
     case ERROR:
       return {

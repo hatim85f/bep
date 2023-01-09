@@ -12,6 +12,10 @@ import personal from "../../assets/personal.png";
 import feedback from "../../assets/feedback.png";
 import close from "../../assets/close.png";
 import trainer from "../../assets/trainer.png";
+import payment from "../../assets/payment.png";
+import history from "../../assets/history.png";
+import wishlist from "../../assets/wishlist.png";
+import courses_black from "../../assets/courses_black.png";
 
 import Input from "../../components/input/Input";
 
@@ -49,7 +53,6 @@ const ManageUsers = () => {
       }
     }
   }, [userDetails.image, userDetails.gender]);
-  console.log(userDetails);
 
   const dispatch = useDispatch();
 
@@ -77,7 +80,6 @@ const ManageUsers = () => {
     setTrainerData(false);
   };
 
-  console.log(newRating);
   return (
     <div className={classes.mainContainer}>
       <div className={classes.adminMainContainer}>
@@ -224,7 +226,16 @@ const ManageUsers = () => {
             </div>
           </DataCard>
         )}
-        <DataCard>
+        <DataCard title="Payments" image={payment} onClick={() => {}}>
+          Payments / History / Courses and status per Course / wish list
+        </DataCard>
+        <DataCard title="History" image={history} onClick={() => {}}>
+          Payments / History / Courses and status per Course / wish list
+        </DataCard>
+        <DataCard title="Courses" image={courses_black} onClick={() => {}}>
+          Payments / History / Courses and status per Course / wish list
+        </DataCard>
+        <DataCard title="Wish List" image={wishlist} onClick={() => {}}>
           Payments / History / Courses and status per Course / wish list
         </DataCard>
       </div>

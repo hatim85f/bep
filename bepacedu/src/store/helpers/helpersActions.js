@@ -6,8 +6,6 @@ export const getCountries = () => {
 
     const resData = await response.json();
 
-    console.log(resData);
-
     dispatch({
       type: GET_COUNTRIES,
       countries: resData.data,

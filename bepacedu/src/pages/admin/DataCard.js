@@ -16,11 +16,13 @@ const DataCard = (props) => {
       )}
       <div className={classes.header}>
         <strong> {props.title} </strong>
-        <img
-          src={props.image}
-          className={classes.headerImage}
-          alt={props.title}
-        />
+        {!props.notShow && (
+          <img
+            src={props.image}
+            className={classes.headerImage}
+            alt={props.title}
+          />
+        )}
       </div>
       <div className={classes.data}>{props.children}</div>
     </div>

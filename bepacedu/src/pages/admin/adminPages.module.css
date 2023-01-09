@@ -87,6 +87,7 @@
   width: 100%;
   overflow: auto;
   margin-top: 25px;
+  padding-bottom: 2vw;
   border-bottom: navy solid 2.5px;
 }
 

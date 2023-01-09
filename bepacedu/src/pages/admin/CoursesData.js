@@ -7,7 +7,8 @@ import classes from "./course.module.css";
 import CourseAddition from "./CourseAddition";
 
 import * as coursesActions from "../../store/courses/coursesActions";
-import CoursesShow from "./CoursesShow";
+
+import LessCourseData from "./LessCourseData";
 
 const CoursesData = (props) => {
   const { color } = useLocation().state;
@@ -35,15 +36,21 @@ const CoursesData = (props) => {
       <div className={addCourse ? classes.courseModal : classes.removeModal}>
         <CourseAddition add={addCourse} close={() => setAddCourse(false)} />
       </div>
-      <div className={classes.courseShow}>
-        {courses && courses.length > 0 && (
-          <div className={classes.courseContainer}>
-            {courses.map((c, i) => {
-              return <CoursesShow course={c} key={i} />;
-            })}
-          </div>
-        )}
-      </div>
+      {courses && courses.length > 0 && (
+        <div className={classes.courseShow}>
+          {courses && courses.length > 0 && (
+            <div className={classes.courseShowContainer}>
+              {courses.map((c, i) => {
+                return (
+                  <div className={classes.singleCourse} key={i}>
+                    <LessCourseData course={c} />
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
