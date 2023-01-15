@@ -121,7 +121,7 @@ router.post("/all_users", auth, async (req, res) => {
   const { users } = req.body;
 
   try {
-    const oldUser = await User.findOne({ userEmail: users.phone });
+    const oldUser = await User.findOne({ phone: users.phone });
 
     if (oldUser) {
       return res.status(500).send({

@@ -9,6 +9,7 @@ import Registeration from "./pages/registeration/Registeration";
 import CoursesData from "./pages/admin/CoursesData";
 import CoursesShow from "./pages/admin/CoursesShow";
 import Groups from "./pages/admin/Groups";
+import Payments from "./pages/admin/Payments";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Route path="/admin/courses" element={<CoursesData />} />
       <Route path="/admin/courses/course_details" element={<CoursesShow />} />
       <Route path="admin/groups" element={<Groups />} />
+      <Route path="/admin/payments" element={<Payments />} />
     </Routes>
   );
 }

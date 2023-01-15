@@ -100,6 +100,9 @@ const UserSchema = Schema({
     type: Boolean,
     default: false,
   },
+  scheduledPayments: {
+    type: Array,
+  },
 });
 
 module.exports = User = mongoose.model("user", UserSchema);

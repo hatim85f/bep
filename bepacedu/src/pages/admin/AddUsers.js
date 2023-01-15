@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -91,10 +91,13 @@ const AddUsers = () => {
     setFinalData(updatedData);
   }, [data, firstName, lastName]);
 
+  const navigate = useNavigate();
+
   const submit = () => {
     for (let data in finalData) {
       dispatch(usersActions.addUsers(finalData[data]));
     }
+    navigate("/dashboard");
   };
 
   return (
@@ -116,7 +119,6 @@ const AddUsers = () => {
           id="upload"
         />
       </div>
-      <Sorting />
       <ReusableTable
         Data={finalData}
         neededColumns={usersColums}

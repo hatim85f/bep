@@ -16,6 +16,7 @@ import payment from "../../assets/payment.png";
 import history from "../../assets/history.png";
 import wishlist from "../../assets/wishlist.png";
 import courses_black from "../../assets/courses_black.png";
+import certificate from "../../assets/certificate.png";
 
 import Input from "../../components/input/Input";
 
@@ -227,10 +228,81 @@ const ManageUsers = () => {
           </DataCard>
         )}
         <DataCard title="Payments" image={payment} onClick={() => {}}>
-          Payments / History / Courses and status per Course / wish list
+          {userDetails.payments.length > 0 ? (
+            <table className={classes.smallTable}>
+              <thead>
+                <tr>
+                  <th>SN</th>
+                  <th>Course Name</th>
+                  <th>Required</th>
+                  <th>Status</th>
+                  <th>Scheduled</th>
+                  <th>Compeltion Status</th>
+                </tr>
+              </thead>
+
+              {userDetails.payments.map((a, i) => {
+                return (
+                  <tbody key={i}>
+                    <tr key={i}>
+                      <td>{i + 1}</td>
+                      <td> {a.courseName} </td>
+                      <td> {a.requiredPayments} $ </td>
+                      <td> {a.status} </td>
+                      <td> {a.scheduled ? "Yes" : "No"} </td>
+                      <td> {a.completed ? "Completed" : "Not yet"} </td>
+                    </tr>
+                  </tbody>
+                );
+              })}
+            </table>
+          ) : (
+            <div className={classes.message}>
+              <strong>No recent Payment Data for this user</strong>
+            </div>
+          )}
         </DataCard>
         <DataCard title="History" image={history} onClick={() => {}}>
-          Payments / History / Courses and status per Course / wish list
+          {userDetails.history.length > 0 ? (
+            <table className={classes.smallTable}>
+              <thead>
+                <tr>
+                  <th>SN</th>
+                  <th>Group</th>
+                  <th>Program</th>
+                  <th>Starting Date</th>
+                  <th>Ending Date</th>
+                  <th>Passed</th>
+                  <th>Certificate</th>
+                </tr>
+              </thead>
+              {userDetails.history.map((h, i) => {
+                return (
+                  <tbody key={i}>
+                    <tr>
+                      <td> {i + 1} </td>
+                      <td> {h.groupName} </td>
+                      <td> {h.courseName} </td>
+                      <td> {h.startingDate} </td>
+                      <td> {h.endingDate} </td>
+                      <td> {h.pass ? "Yes" : "Not Yet"} </td>
+                      <td>
+                        <img
+                          className={classes.certificate}
+                          src={certificate}
+                          alt="Cefrtificate"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                );
+              })}
+            </table>
+          ) : (
+            <div className={classes.message}>
+              <strong>No History Data for this user</strong>
+            </div>
+          )}
         </DataCard>
         <DataCard title="Courses" image={courses_black} onClick={() => {}}>
           Payments / History / Courses and status per Course / wish list

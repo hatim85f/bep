@@ -39,7 +39,7 @@ const LessCourseData = (props) => {
           navigate("/admin/courses/course_details", { state: { course } })
         }
       >
-        Lear more ...
+        Learn more ...
       </p>
     </DataCard>
   );

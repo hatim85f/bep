@@ -19,6 +19,8 @@ export const addUsers = (users) => {
 
     const resData = await response.json();
 
+    console.log(resData);
+
     dispatch({
       type: ERROR,
       error: response.ok ? "Success" : resData.error,

@@ -1,7 +1,10 @@
 const express = require("express");
+const { default: mongoose } = require("mongoose");
 const router = express.Router();
 const auth = require("../../middleware/auth");
 const Courses = require("../../models/Courses");
+const Groups = require("../../models/Groups");
+const User = require("../../models/User");
 
 router.get("/", async (req, res) => {
   try {
@@ -62,4 +65,49 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
+router.put("/pass_student", auth, async (req, res) => {
+  const { userId, groupId, paymentIndex } = req.body;
+
+  try {
+    const group = await Groups.findOne({ _id: groupId });
+    const courseId = group.course;
+
+    const user = await User.findOne({ _id: userId });
+
+    const userPayments = user.payments;
+
+    const course = await Courses.findOne({ _id: courseId });
+
+    userPayments.splice(paymentIndex, 1);
+
+    await User.updateMany(
+      { _id: userId },
+      {
+        $pull: {
+          activeCourses: {
+            course: group.course,
+          },
+        },
+        $addToSet: {
+          history: {
+            courseId: courseId,
+            courseName: course.name,
+            groupName: group.groupName,
+            groupId: group._id,
+            pass: true,
+            startingDate: group.startingDate,
+            endingDate: group.endingDate,
+            ceftificate: "",
+          },
+        },
+        $set: {
+          payments: userPayments,
+        },
+      }
+    );
+    return res.status(200).send({ message: "User Details Updated" });
+  } catch (error) {
+    return res.status(500).send({ error: "Error !", message: error.message });
+  }
+});
 module.exports = router;

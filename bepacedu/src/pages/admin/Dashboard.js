@@ -12,6 +12,7 @@ import certificate from "../../assets/certificate.png";
 import courses from "../../assets/courses.png";
 import admin from "../../assets/admin.png";
 import support from "../../assets/support.png";
+import session from "../../assets/session.png";
 
 import ItemCard from "./ItemCard";
 
@@ -62,7 +63,9 @@ const Dashboard = () => {
           <ItemCard
             title="Payments"
             image={payment}
-            onClick={() => {}}
+            onClick={() =>
+              navigate("/admin/payments", { state: { color: "#c2dbdc" } })
+            }
             color="#c2dbdc"
           />
           <ItemCard

@@ -1,36 +1,96 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import classes from "./groups.module.css";
+import styles from "./course.module.css";
 
 import * as groupsActions from "../../store/groups/groupsActions";
 import { useDispatch, useSelector } from "react-redux";
 
 import DataCard from "./DataCard";
+import SelectingTable from "./SelectingTable";
+
+import session from "../../assets/session.png";
+import GroupSession from "./GroupSession";
 
 const Groups = () => {
   const { groups } = useSelector((state) => state.groups);
+
+  const [openModal, setOpenModal] = useState(false);
+  const [group, setGroup] = useState([]);
+  const [openGroup, setOpenGroup] = useState(false);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(groupsActions.getGroups());
   }, [dispatch]);
 
-  console.log(groups);
+  const addPeople = (group) => {
+    setOpenModal(true);
+    setGroup(group);
+  };
+
+  const openSession = (group) => {
+    setOpenGroup(true);
+    setGroup(group);
+  };
+
   return (
     <div className={classes.groupContainer}>
       <div className={classes.innerContainer}>
         <DataCard notShow>
           <table className={classes.groupTable}>
-            <tr>
-              <th>Group Name</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Course</th>
-              <th>Participants</th>
-            </tr>
+            <thead>
+              <tr>
+                <th>Group Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Program</th>
+                <th>Participatns</th>
+                <th>Add Participatns</th>
+                <th>Open Session</th>
+              </tr>
+            </thead>
+            {groups && (
+              <tbody>
+                {groups.map((g, i) => {
+                  return (
+                    <tr key={i}>
+                      <td> {g.groupName} </td>
+                      <td> {g.startingDate} </td>
+                      <td> {g.endingDate} </td>
+                      <td> {g.courseName} </td>
+                      <td> {g.participants} </td>
+                      <td>
+                        <button
+                          className={classes.addBtn}
+                          onClick={() => addPeople(g)}
+                        >
+                          Add
+                        </button>
+                      </td>
+                      <td onClick={() => openSession(g)}>
+                        <img
+                          src={session}
+                          className={classes.tableImage}
+                          alt="Open Session"
+                        />
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            )}
           </table>
         </DataCard>
       </div>
+      <div className={openModal ? classes.courseModal : classes.removeModal}>
+        <SelectingTable group={group} closeModal={() => setOpenModal(false)} />
+      </div>
+      {groups && groups.length > 0 && (
+        <div className={openGroup ? classes.courseModal : classes.removeModal}>
+          <GroupSession group={group} closeModal={() => setOpenGroup(false)} />
+        </div>
+      )}
     </div>
   );
 };

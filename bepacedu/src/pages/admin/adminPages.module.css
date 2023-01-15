@@ -178,3 +178,41 @@
 .areaText h2 {
   text-align: center;
 }
+
+.smallTable {
+  margin-top: 25px;
+}
+
+.smallTable td:hover {
+  cursor: default;
+}
+
+.smallTable th {
+  background: #577590;
+  border: #f3ca40 solid 1px;
+  color: #fff;
+}
+
+.smallTable td {
+  background: #c5d6d8;
+  border: #84714f solid 1px;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #c5d6d8;
+  width: 80%;
+  height: 3.5rem;
+  margin-top: 25px;
+  border-radius: 8px;
+  border: #84714f solid 2.5px;
+}
+
+.certificate {
+  width: 2.5vw;
+  height: 2.5vw;
+  cursor: pointer;
+}

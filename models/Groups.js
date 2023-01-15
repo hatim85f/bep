@@ -20,21 +20,27 @@ const GroupSchema = Schema({
   },
   participants: [
     {
-      user: {
+      userId: {
         type: Schema.Types.ObjectId,
         ref: "user",
       },
       payments: {
-        type: Array,
+        type: String,
+        default: "pending",
       },
       attendance: {
         type: Array,
       },
-      assigments: {
-        type: Array,
-      },
+
       pass: {
         type: Boolean,
+        default: false,
+      },
+      name: {
+        type: String,
+      },
+      code: {
+        type: String,
       },
     },
   ],

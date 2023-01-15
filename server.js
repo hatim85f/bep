@@ -18,6 +18,7 @@ app.use("/api/admin", require("./routes/api/admin"));
 app.use("/api/courses", require("./routes/api/courses"));
 app.use("/api/category", require("./routes/api/category"));
 app.use("/api/groups", require("./routes/api/groups"));
+app.use("/api/payments", require("./routes/api/payments"));
 
 // serve static assets in production
 const PORT = process.env.PORT || 5000;

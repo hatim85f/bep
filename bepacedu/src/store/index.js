@@ -4,6 +4,7 @@ import { authReducer } from "./auth/authReducer";
 import { coursesReducer } from "./courses/coursesReducer";
 import { groupsReducer } from "./groups/groupsReducer";
 import { helpersReducer } from "./helpers/helpersReducer";
+import { paymentsReducer } from "./payments/paymentsReducer";
 import { usersReducer } from "./users/usersReducer";
 
 const store = configureStore({
@@ -14,7 +15,10 @@ const store = configureStore({
     users: usersReducer,
     courses: coursesReducer,
     groups: groupsReducer,
+    payments: paymentsReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ immutableCheck: false }),
 });
 
 export default store;
