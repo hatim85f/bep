@@ -37,15 +37,21 @@
   align-items: center;
 }
 
+.center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .receiptContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 80%;
   background: #cecfd0;
   margin-top: 25px;
-  height: 100%;
+  height: auto;
   border-radius: 8px;
 }
 

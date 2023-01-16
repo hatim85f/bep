@@ -1,0 +1,71 @@
+.second th {
+  background: #114b5f;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.second td {
+  border-radius: 8px;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.second tr:nth-child(even) {
+  background: #b3e0eb;
+}
+
+.second tr:nth-child(odd) {
+  background: #d8f2ec;
+}
+
+.pagination {
+  display: flex;
+  width: 90%;
+  align-self: center;
+  border-radius: 15px;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  height: 3rem;
+  padding: 10px;
+  border: none;
+  background: #114b5f;
+}
+
+.paginationButton {
+  outline: none;
+  background: #d8f2ec;
+  width: 10%;
+  border-radius: 15px;
+  height: 2rem;
+  border: #000 solid;
+  color: #000;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.paginationButton:disabled {
+  background: #888;
+  border: none;
+}
+
+.pagination input {
+  outline: none;
+  border: #fff solid 2.5px;
+  border-radius: 15px;
+  background: rgb(160, 230, 214);
+  height: 2rem;
+  color: navy;
+  text-align: center;
+}
+
+.pages {
+  color: #fff;
+}
+
+.icon i {
+  color: #fff;
+}

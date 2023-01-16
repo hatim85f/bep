@@ -19,6 +19,38 @@ router.get("/", async (req, res) => {
   }
 });
 
+// getting users active courses
+router.get("/active", auth, async (req, res) => {
+  const { userId } = req.query;
+
+  try {
+    const user = await User.findOne({ _id: userId });
+    const activeCourses = user.activeCourses;
+
+    let active = [];
+    for (let data in activeCourses) {
+      const course = await Courses.findOne({ _id: activeCourses[data].course });
+
+      const group = await Groups.findOne({
+        course: course._id,
+        "participant.userId": userId,
+      });
+
+      active.push({
+        _id: activeCourses[data].course,
+        courseName: course.name,
+        startingDate: group.startingDate,
+        endingDate: group.endingDate,
+        groupName: group.groupName,
+      });
+    }
+
+    return res.status(200).json({ active });
+  } catch (error) {
+    return res.status(500).send({ error: "Error !", message: error.message });
+  }
+});
+
 router.post("/", auth, async (req, res) => {
   const { courseDetails } = req.body;
 

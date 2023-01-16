@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import classes from "./payments.module.css";
 import styles from "./groups.module.css";
@@ -30,11 +30,15 @@ import PaymentStatusFilter from "../../components/table/PaymentStatusFilter";
 import { mainLink } from "../../store/link";
 import { clearError, setError } from "../../store/auth/authActions";
 import ErrorModal from "../../components/error/ErrorModal";
+import PaymentHistory from "./PaymentHistory";
+import ProgressBar from "../../components/progressBar/ProgressBar";
 
 const Payments = () => {
   const { payments } = useSelector((state) => state.payments);
 
-  const { token, error, errorMessage } = useSelector((state) => state.auth);
+  const { token, error, errorMessage, _id } = useSelector(
+    (state) => state.auth
+  );
 
   const [openPayment, setOpenPayment] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
@@ -46,6 +50,8 @@ const Payments = () => {
   const [paymentDetails, setPaymentDetails] = useState(null);
   const [showReceipt, setShowReceipt] = useState(false);
   const [receiptURL, setReceiptURL] = useState("");
+  const [showHistory, setShowHistory] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const dispatch = useDispatch();
 
@@ -89,60 +95,65 @@ const Payments = () => {
 
   // ================================UPLOADING RECEIPT =============================================
 
-  const uploadReceipt = (e) => {
-    if (e.target.files) {
-      setImage(e.target.files[0]);
-    }
-
-    const storage = getStorage();
-    const metadata = {
-      contentType: "image/jpeg",
-    };
-
-    const storageRef = ref(
-      storage,
-      `${selectedUser.firstNaem}_${selectedUser.lastName}/receipts`
-    );
-    const uploadTask = uploadBytesResumable(
-      storageRef,
-      e.target.files[0],
-      metadata
-    );
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log("Upload is " + progress + "% done");
-
-        if (snapshot.state === "paused") {
-          console.log("Upload is paused");
-        }
-        if (snapshot.state === "running") {
-          console.log("Upload is running");
-        }
-      },
-      (error) => {
-        if (error.code === "storage/unauthorized") {
-          return;
-        }
-        if (error.code === "storage/canceled") {
-          return;
+  const uploadReceipt = useCallback(
+    (e) => {
+      if (selectedUser) {
+        if (e.target.files) {
+          setImage(e.target.files[0]);
         }
 
-        if (error.code === "storage/unknown") {
-          return;
-        }
-      },
-      () => {
-        // Upload completed successfully, now we can get the download URL
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          setImageURL(downloadURL);
-        });
+        const storage = getStorage();
+        const metadata = {
+          contentType: "image/jpeg",
+        };
+
+        const storageRef = ref(
+          storage,
+          `${selectedUser.firstName}_${selectedUser.lastName}/receipts`
+        );
+        const uploadTask = uploadBytesResumable(
+          storageRef,
+          e.target.files[0],
+          metadata
+        );
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            setProgress(parseInt(progress).toFixed(2));
+
+            if (snapshot.state === "paused") {
+              console.log("Upload is paused");
+            }
+            if (snapshot.state === "running") {
+              console.log("Upload is running");
+            }
+          },
+          (error) => {
+            if (error.code === "storage/unauthorized") {
+              return;
+            }
+            if (error.code === "storage/canceled") {
+              return;
+            }
+
+            if (error.code === "storage/unknown") {
+              return;
+            }
+          },
+          () => {
+            // Upload completed successfully, now we can get the download URL
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              setImageURL(downloadURL);
+            });
+          }
+        );
       }
-    );
-  };
+    },
+    [selectedUser]
+  );
 
   // ===================================SUBMITTING=================================================
 
@@ -158,7 +169,8 @@ const Payments = () => {
         paymentIndex,
         imageURL,
         participantIndex,
-        paymentListIndex
+        paymentListIndex,
+        _id
       )
     );
 
@@ -170,6 +182,7 @@ const Payments = () => {
     setParticipantIndex(null);
     setPaymentIndex(null);
     setPaymentDetails(null);
+    setProgress(0);
   };
 
   // ==================================SHOWING RECEIPT=======================================
@@ -288,78 +301,99 @@ const Payments = () => {
 
   return (
     <div className={classes.tableContainer}>
-      <SmallTable
-        check
-        route=""
-        filter
-        Data={payments}
-        neededColumns={neededColumns}
-      />
-      <div className={openPayment ? styles.courseModal : styles.removeModal}>
-        <div
-          className={cascading.closeDiv}
-          onClick={() => setOpenPayment(false)}
+      <div className={cascading.buttonContainer}>
+        <button
+          className={styles.addBtn}
+          onClick={() => setShowHistory(!showHistory)}
         >
-          <img className={cascading.closeImg} src={close} alt="close" />
-        </div>
-        {selectedUser && (
-          <div className={classes.paymentDetails}>
-            <strong> {selectedUser.userName} </strong>
-            <strong> {selectedUser.courseName} </strong>
-            <strong> {selectedUser.requiredPayments} $ </strong>
-            <div className={classes.row}>
+          {showHistory ? "Go to Current Payments" : "Payments History"}
+        </button>
+      </div>
+      {showHistory ? (
+        <PaymentHistory />
+      ) : (
+        <div className={classes.tableContainer}>
+          <SmallTable
+            check
+            route=""
+            filter
+            Data={payments}
+            neededColumns={neededColumns}
+          />
+          <div
+            className={openPayment ? styles.courseModal : styles.removeModal}
+          >
+            <div
+              className={cascading.closeDiv}
+              onClick={() => setOpenPayment(false)}
+            >
+              <img className={cascading.closeImg} src={close} alt="close" />
+            </div>
+            {selectedUser && (
+              <div className={classes.paymentDetails}>
+                <strong> {selectedUser.userName} </strong>
+                <strong> {selectedUser.courseName} </strong>
+                <strong> {selectedUser.requiredPayments} $ </strong>
+                <div className={classes.row}>
+                  <button
+                    className={cascading.submitBtn}
+                    onClick={() => {
+                      document.getElementById("upload").click();
+                      return false;
+                    }}
+                  >
+                    Upload Receipt
+                  </button>
+                  <button className={cascading.submitBtn} onClick={() => {}}>
+                    Schedule Payment
+                  </button>
+                </div>
+                <input
+                  className={classes.uploadInput}
+                  id="upload"
+                  type="file"
+                  onChange={(e) => uploadReceipt(e)}
+                />
+              </div>
+            )}
+            <ProgressBar progress={progress} />
+            <div className={cascading.buttonContainer}>
               <button
                 className={cascading.submitBtn}
-                onClick={() => {
-                  document.getElementById("upload").click();
-                  return false;
-                }}
+                style={{ backgroundColor: "#ff0055", marginTop: 100 }}
+                onClick={receiptItem}
               >
-                Upload Receipt
-              </button>
-              <button className={cascading.submitBtn} onClick={() => {}}>
-                Schedule Payment
+                Submit
               </button>
             </div>
-            <input
-              className={classes.uploadInput}
-              id="upload"
-              type="file"
-              onChange={(e) => uploadReceipt(e)}
-            />
           </div>
-        )}
-        <div className={cascading.buttonContainer}>
-          <button
-            className={cascading.submitBtn}
-            style={{ backgroundColor: "#ff0055", marginTop: 100 }}
-            onClick={receiptItem}
+          <div
+            className={showReceipt ? styles.courseModal : styles.removeModal}
           >
-            Submit
-          </button>
-        </div>
-      </div>
-      <div className={showReceipt ? styles.courseModal : styles.removeModal}>
-        <div
-          className={cascading.closeDiv}
-          onClick={() => setShowReceipt(false)}
-        >
-          <img className={cascading.closeImg} src={close} alt="close" />
-        </div>
-        {receiptURL.length > 0 ? (
-          <div className={classes.receiptContainer}>
-            <img
-              className={classes.receiptImage}
-              src={receiptURL}
-              alt="receipt"
-            />
+            <div
+              className={cascading.closeDiv}
+              onClick={() => setShowReceipt(false)}
+            >
+              <img className={cascading.closeImg} src={close} alt="close" />
+            </div>
+            {receiptURL.length > 0 ? (
+              <div className={classes.center}>
+                <div className={classes.receiptContainer}>
+                  <img
+                    className={classes.receiptImage}
+                    src={receiptURL}
+                    alt="receipt"
+                  />
+                </div>
+              </div>
+            ) : (
+              <div className={classes.receiptContainer}>
+                <strong>User receipt not yet added</strong>
+              </div>
+            )}
           </div>
-        ) : (
-          <div className={classes.receiptContainer}>
-            <strong>User receipt not yet added</strong>
-          </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,7 +1,12 @@
-import { GET_PAYMENTS, UPDATE_PAYMENT } from "./paymentsActions";
+import {
+  GET_PAYMENTS,
+  PAYMENT_HISTORY,
+  UPDATE_PAYMENT,
+} from "./paymentsActions";
 
 const initialState = {
   payments: [],
+  paymentHistory: [],
 };
 
 export const paymentsReducer = (state = initialState, action) => {
@@ -18,6 +23,11 @@ export const paymentsReducer = (state = initialState, action) => {
       return {
         ...state,
         payments: newPayment,
+      };
+    case PAYMENT_HISTORY:
+      return {
+        ...state,
+        paymentHistory: action.paymentHistory,
       };
     default:
       return state;

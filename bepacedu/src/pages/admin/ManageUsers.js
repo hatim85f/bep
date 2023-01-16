@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "./admin.module.css";
 import classes from "./adminPages.module.css";
 import { useLocation } from "react-router-dom";
@@ -24,11 +24,12 @@ import * as usersActions from "../../store/users/usersActions";
 
 import DataCard from "./DataCard";
 import { useDispatch, useSelector } from "react-redux";
+import { mainLink } from "../../store/link";
 
 const ManageUsers = () => {
   const userDetails = useLocation().state[0];
 
-  const { firstName, lastName, adminType, _id } = useSelector(
+  const { firstName, lastName, adminType, token } = useSelector(
     (state) => state.auth
   );
 
@@ -36,6 +37,7 @@ const ManageUsers = () => {
   const [editModal, setEditModal] = useState(false);
   const [trainerData, setTrainerData] = useState(false);
   const [newRating, setNewRating] = useState("");
+  const [activeCourses, setActiveCourses] = useState([]);
 
   const [adminFeedback, setAdminFeedback] = useState("");
 
@@ -80,6 +82,29 @@ const ManageUsers = () => {
     setNewRating("");
     setTrainerData(false);
   };
+
+  const findCourse = useCallback(async () => {
+    const response = await fetch(
+      `${mainLink}/api/courses/active?userId=${userDetails._id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": token,
+        },
+      }
+    );
+
+    const resData = await response.json();
+
+    if (response.ok) {
+      setActiveCourses(resData.active);
+    }
+  }, [userDetails, token]);
+
+  useEffect(() => {
+    findCourse();
+  }, [findCourse]);
 
   return (
     <div className={classes.mainContainer}>
@@ -305,10 +330,39 @@ const ManageUsers = () => {
           )}
         </DataCard>
         <DataCard title="Courses" image={courses_black} onClick={() => {}}>
-          Payments / History / Courses and status per Course / wish list
+          {userDetails.activeCourses.length > 0 ? (
+            <table className={classes.smallTable}>
+              <thead>
+                <tr>
+                  <th>SN</th>
+                  <th>Group Name</th>
+                  <th>Program</th>
+                  <th>Starting Date</th>
+                  <th>Ending Date</th>
+                </tr>
+              </thead>
+              {activeCourses.map((h, i) => {
+                return (
+                  <tbody key={i}>
+                    <tr>
+                      <td> {i + 1} </td>
+                      <td> {h.groupName} </td>
+                      <td> {h.courseName} </td>
+                      <td> {h.startingDate} </td>
+                      <td> {h.endingDate} </td>
+                    </tr>
+                  </tbody>
+                );
+              })}
+            </table>
+          ) : (
+            <div className={classes.message}>
+              <strong>No History Data for this user</strong>
+            </div>
+          )}
         </DataCard>
         <DataCard title="Wish List" image={wishlist} onClick={() => {}}>
-          Payments / History / Courses and status per Course / wish list
+          User Wish list will be shown here
         </DataCard>
       </div>
     </div>

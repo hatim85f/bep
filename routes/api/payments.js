@@ -4,6 +4,8 @@ const Courses = require("../../models/Courses");
 const User = require("../../models/User");
 const Groups = require("../../models/Groups");
 const { default: mongoose } = require("mongoose");
+const Payment = require("../../models/Payment");
+const moment = require("moment/moment");
 const router = express.Router();
 
 router.get("/", auth, async (req, res) => {
@@ -41,6 +43,66 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
+// getting all payments history
+router.get("/history", auth, async (req, res) => {
+  try {
+    const history = await Payment.aggregate([
+      {
+        $lookup: {
+          from: "users",
+          foreignField: "_id",
+          localField: "from",
+          as: "user",
+        },
+      },
+      {
+        $lookup: {
+          from: "courses",
+          foreignField: "_id",
+          localField: "against",
+          as: "course",
+        },
+      },
+      {
+        $lookup: {
+          from: "admins",
+          foreignField: "_id",
+          localField: "receiver",
+          as: "admin",
+        },
+      },
+      {
+        $project: {
+          date: 1,
+          value: 1,
+          receipt: 1,
+          "user.firstName": 1,
+          "user.lastName": 1,
+          "course.name": 1,
+          "admin.firstName": 1,
+          "admin.lastName": 1,
+        },
+      },
+    ]);
+
+    const paymentHistory = history.map((a) => {
+      return {
+        _id: a._id,
+        value: a.value,
+        date: a.date,
+        receipt: a.receipt,
+        userName: a.user[0].firstName + " " + a.user[0].lastName,
+        adminName: a.admin[0].firstName + " " + a.admin[0].lastName,
+        courseName: a.course[0].name,
+      };
+    });
+
+    return res.status(200).json({ paymentHistory });
+  } catch (error) {
+    return res.status(500).send({ error: "Error", message: error.message });
+  }
+});
+
 // get user payments details and groups
 router.get("/user", auth, async (req, res) => {
   const { userId, courseId } = req.query;
@@ -63,7 +125,8 @@ router.get("/user", auth, async (req, res) => {
 });
 
 router.put("/", auth, async (req, res) => {
-  const { paymentDetails, paymentIndex, receipt, participantIndex } = req.body;
+  const { paymentDetails, paymentIndex, receipt, participantIndex, adminId } =
+    req.body;
 
   try {
     const user = await User.findOne({ _id: paymentDetails.userId });
@@ -85,6 +148,17 @@ router.put("/", auth, async (req, res) => {
       courseName: userPayments[paymentIndex].courseName,
       completed: userPayments[paymentIndex].completed,
     };
+
+    const newPayment = new Payment({
+      from: user._id,
+      against: paymentDetails.courseId,
+      value: parseInt(paymentDetails.requiredPayments),
+      date: moment(new Date()).format("DD/MM/YYYY hh:mm"),
+      receipt: receipt,
+      receiver: adminId,
+    });
+
+    await Payment.insertMany(newPayment);
 
     await User.updateMany(
       { _id: paymentDetails.userId },

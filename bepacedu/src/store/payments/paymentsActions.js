@@ -3,6 +3,7 @@ import { mainLink } from "../link";
 
 export const GET_PAYMENTS = "GET_PAYMENTS";
 export const UPDATE_PAYMENT = "UPDATE_PAYMENT";
+export const PAYMENT_HISTORY = "PAYMENT_HISTORY";
 
 export const getPayments = () => {
   return async (dispatch, getState) => {
@@ -38,7 +39,8 @@ export const updatePayment = (
   paymentIndex,
   receipt,
   participantIndex,
-  paymentListIndex
+  paymentListIndex,
+  adminId
 ) => {
   return async (dispatch, getState) => {
     const { token } = getState().auth;
@@ -54,6 +56,7 @@ export const updatePayment = (
         paymentIndex,
         receipt,
         participantIndex,
+        adminId,
       }),
     });
 
@@ -72,6 +75,29 @@ export const updatePayment = (
       receipt,
       participantIndex,
       paymentListIndex,
+    });
+  };
+};
+
+export const getHistory = () => {
+  return async (dispatch, getState) => {
+    const { token } = getState().auth;
+
+    const response = await fetch(`${mainLink}/api/payments/history`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": token,
+      },
+    });
+
+    const resData = await response.json();
+
+    console.log(resData);
+
+    dispatch({
+      type: PAYMENT_HISTORY,
+      paymentHistory: resData.paymentHistory,
     });
   };
 };
