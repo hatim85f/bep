@@ -222,4 +222,40 @@ router.put("/rating", auth, async (req, res) => {
   }
 });
 
+router.put("/phone", auth, async (req, res) => {
+  const { userId, phoneNumber, whatsAppNumber } = req.body;
+
+  try {
+    await User.updateMany(
+      { _id: userId },
+      {
+        $set: {
+          phone: phoneNumber,
+          whatsApp: whatsAppNumber,
+        },
+      }
+    );
+
+    return res
+      .status(200)
+      .send({ message: `User Details updated Successfully` });
+  } catch (error) {
+    return res.status(500).send({ error: "Error !", message: error.message });
+  }
+});
+
+router.delete("/", auth, async (req, res) => {
+  const { userId } = req.body;
+
+  try {
+    const user = await User.findOne({ _id: userId });
+    await User.deleteOne({ _id: userId });
+    return res.status(200).send({
+      message: `User ${user.firstName} ${user.lastName} deleted Successfully`,
+    });
+  } catch (error) {
+    return res.status(500).send({ error: "Error !", message: error.message });
+  }
+});
+
 module.exports = router;

@@ -1,0 +1,149 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #cad5cd;
+}
+
+.innerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+  margin-top: 25px;
+  background: #fff;
+  border: var(--primary-color) solid 2.5px;
+  border-radius: 8px;
+  box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  padding: 1vw;
+}
+
+.headerImage {
+  max-width: 60vw;
+}
+
+.labelContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.iconContainer {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.label {
+  font-weight: bold;
+  color: navy;
+  font-size: 1.4rem;
+  margin-left: 20%;
+  margin-top: 15px;
+}
+
+.objectivesContainer {
+  width: 80%;
+  border: #000 solid 1.5px;
+  padding-top: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  border-radius: 8px;
+}
+
+.lastObjectives,
+.inputRow {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
+  border-bottom: #000 solid 3px;
+}
+
+.lastObjectives {
+  border: none;
+}
+
+.icon {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.submit:active,
+.icon:active {
+  box-shadow: 0 0px #666;
+  transform: translateY(4px);
+}
+
+.inputMain {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.innerRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-right: 2vw;
+  border-bottom: var(--secondary-color) solid 1.5px;
+}
+
+.buttonRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 30%;
+  align-items: center;
+}
+
+.targted {
+  width: 80%;
+  height: 8rem;
+  font-size: 1.2rem;
+}
+
+.buttonContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3vw;
+  margin-bottom: 3vw;
+}
+
+.submit {
+  width: 20%;
+  outline: none;
+  border: #333934 solid 2.5px;
+  border-radius: 8px;
+  height: 3rem;
+  background: #333934;
+  font-size: 1.2rem;
+  color: #fff;
+  transition: all 1s;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background: #cad5cd;
+  border: #cad5cd solid 2.5px;
+  color: #000;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: all 1s;
+}

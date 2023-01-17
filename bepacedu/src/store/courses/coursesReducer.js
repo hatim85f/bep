@@ -1,4 +1,10 @@
-import { ADD_COURSES, GET_CATEGORIES, GET_COURSES } from "./coursesActions";
+import {
+  ADD_COURSES,
+  DELETE_COURSE,
+  GET_CATEGORIES,
+  GET_COURSES,
+  UPDATE_COURSE,
+} from "./coursesActions";
 
 const initialState = {
   courses: [],
@@ -21,6 +27,22 @@ export const coursesReducer = (state = initialState, action) => {
       return {
         ...state,
         categories: action.categories,
+      };
+    case UPDATE_COURSE:
+      const allCourses = state.courses;
+      const courseIndex = allCourses.findIndex(
+        (x) => x._id === action.courseId
+      );
+      allCourses[courseIndex] = action.course;
+      return {
+        ...state,
+        courses: allCourses,
+      };
+    case DELETE_COURSE:
+      const newCourses = state.courses.filter((a) => a._id !== action.courseId);
+      return {
+        ...state,
+        courses: newCourses,
       };
     default:
       return state;

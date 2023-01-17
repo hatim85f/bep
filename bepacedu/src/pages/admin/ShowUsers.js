@@ -7,6 +7,7 @@ import classes from "./addUsers.module.css";
 import styles from "./admin.module.css";
 
 import * as usersActions from "../../store/users/usersActions";
+import * as authActions from "../../store/auth/authActions";
 import ReusableTable from "../../components/table/ReusableTable";
 import { usersColums } from "../../components/table/usersColumns";
 
@@ -14,10 +15,12 @@ import Sorting from "../../components/sorting/Sorting";
 
 import * as XLSX from "sheetjs-style";
 import { saveAs } from "file-saver";
+import ErrorModal from "../../components/error/ErrorModal";
 
 const ShowUsers = () => {
   const { color } = useLocation().state;
   const { users } = useSelector((state) => state.users);
+  const { token, error, errorMessage } = useSelector((state) => state.auth);
 
   const [usersData, setUsersData] = useState([]);
 
@@ -42,6 +45,21 @@ const ShowUsers = () => {
       setUsersData(updatedData);
     }
   }, [users]);
+
+  // ========================GETTING USER BACK==================================================
+
+  const getBack = async () => {
+    const userDetails = window.localStorage.getItem("userDetails");
+    const userData = JSON.parse(userDetails);
+
+    dispatch(authActions.getUserBack(userData.user, userData.token));
+  };
+
+  useEffect(() => {
+    if (!token) {
+      getBack();
+    }
+  }, [token]);
 
   // =================================SORTING============================================================
 
@@ -100,6 +118,21 @@ const ShowUsers = () => {
     XLSX.writeFile(wb, "Users.xlsx");
   };
 
+  const deleteUser = (data) => {
+    dispatch(usersActions.deleteUser(data[0]._id));
+  };
+
+  const clearError = () => {
+    dispatch(authActions.clearError());
+    dispatch(usersActions.getUsers());
+  };
+
+  if (error) {
+    return (
+      <ErrorModal title={error} message={errorMessage} onConfirm={clearError} />
+    );
+  }
+
   return (
     <div className={classes.showContainer} style={{ backgroundColor: color }}>
       <div className={classes.actionBtn}>
@@ -126,7 +159,7 @@ const ShowUsers = () => {
           Data={usersData}
           neededColumns={usersColums}
           check
-          delete={() => {}}
+          delete={(data) => deleteUser(data)}
           selected={() => {}}
           route="/users/manage"
           filter

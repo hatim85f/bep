@@ -143,9 +143,9 @@ const ReusableTable = (props) => {
               <button
                 onClick={edit}
                 disabled={selectedRow.length === 0}
-                className="paginationButton"
+                className="delete paginationButton"
               >
-                Edit
+                Show
               </button>
               <button
                 className="delete paginationButton"
@@ -194,28 +194,28 @@ const ReusableTable = (props) => {
           <button
             onClick={() => gotoPage(0)}
             disabled={!canPreviousPage}
-            className="paginationButton"
+            className="delete paginationButton"
           >
             First
           </button>
           <button
             onClick={() => previousPage()}
             disabled={!canPreviousPage}
-            className="paginationButton"
+            className="delete paginationButton"
           >
             Previous
           </button>
           <button
             onClick={() => nextPage()}
             disabled={!canNextPage}
-            className="paginationButton"
+            className="delete paginationButton"
           >
             Next
           </button>
           <button
             onClick={() => gotoPage(pageCount - 1)}
             disabled={!canNextPage}
-            className="paginationButton"
+            className="delete paginationButton"
           >
             Last
           </button>

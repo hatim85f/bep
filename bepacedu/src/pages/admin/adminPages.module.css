@@ -216,3 +216,27 @@
   height: 2.5vw;
   cursor: pointer;
 }
+
+.phoneModal,
+.removePhoneModal {
+  width: 60vw;
+  height: 30vw;
+  position: absolute;
+  background: #cfe6cc;
+  border-radius: 8px;
+  border: #000 solid 2.5px;
+  transform: scale(1);
+  transition: all 1s;
+}
+
+.removePhoneModal {
+  transform: scale(0);
+  transition: all 1s;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

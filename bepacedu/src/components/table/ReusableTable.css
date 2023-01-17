@@ -85,7 +85,11 @@ th {
 }
 
 .delete {
-  background: red;
+  background: #fff;
+}
+
+.show {
+  background: skyblue;
 }
 
 .img {

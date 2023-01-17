@@ -142,4 +142,63 @@ router.put("/pass_student", auth, async (req, res) => {
     return res.status(500).send({ error: "Error !", message: error.message });
   }
 });
+
+router.put("/", auth, async (req, res) => {
+  const { course, courseId } = req.body;
+
+  try {
+    const {
+      abbreviation,
+      brochure,
+      frequency,
+      learningObjective,
+      modules,
+      name,
+      numberOfHours,
+      numberOfSessions,
+      image,
+      offerPrice,
+      price,
+      targetedParticipants,
+    } = course;
+    await Courses.updateMany(
+      { _id: courseId },
+      {
+        $set: {
+          abbreviation,
+          brochure,
+          frequency,
+          learningObjective,
+          modules,
+          name,
+          numberOfHours,
+          numberOfSessions,
+          image,
+          offerPrice,
+          price,
+          targetedParticipants,
+          lastUpdated: moment(new Date()).format("DD/MM/YYYY hh:mm a"),
+        },
+      }
+    );
+
+    return res
+      .status(200)
+      .send({ message: `Program ${name} updated Successfully` });
+  } catch (error) {
+    return res.status(500).send({ error: "Error", message: error.message });
+  }
+});
+
+router.delete("/", auth, async (req, res) => {
+  const { courseId } = req.body;
+
+  try {
+    await Courses.deleteMany({ _id: courseId });
+
+    return res.status(200).send({ message: `Program deleted Successfully` });
+  } catch (error) {
+    return res.status(500).send({ error: "Error !", message: error.message });
+  }
+});
 module.exports = router;

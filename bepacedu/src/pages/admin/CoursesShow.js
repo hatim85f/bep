@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import classes from "./course.module.css";
 import styles from "./admin.module.css";
@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import DataCard from "./DataCard";
 
 import close from "../../assets/close.png";
+import edit from "../../assets/edit.png";
 import Input from "../../components/input/Input";
 
 import moment from "moment";
@@ -41,11 +42,25 @@ const CoursesShow = () => {
     setOpenGroup(false);
   };
 
+  const navigate = useNavigate();
+
   return (
     <div className={classes.mainData}>
       <div className={classes.mainInternalData}>
         <DataCard notShow>
           <div className={classes.dataContainer}>
+            {isAdmin && (
+              <div className={classes.editContainer}>
+                <img
+                  className={classes.editImg}
+                  alt="edit"
+                  src={edit}
+                  onClick={() =>
+                    navigate("/admin/edit_course", { state: { course } })
+                  }
+                />
+              </div>
+            )}
             <div className={classes.imageContainer}>
               <img
                 src={course.image}

@@ -111,3 +111,65 @@ export const editRating = (userId, rating, admin) => {
     alert(resData.message);
   };
 };
+
+export const updateUser = (userId, phoneNumber, whatsAppNumber) => {
+  return async (dispatch, getState) => {
+    const { token } = getState().auth;
+
+    const response = await fetch(`${mainLink}/api/registeration/phone`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": token,
+      },
+      body: JSON.stringify({ userId, phoneNumber, whatsAppNumber }),
+    });
+
+    const resData = await response.json();
+
+    if (!response.ok) {
+      dispatch({
+        type: ERROR,
+        error: resData.error,
+        message: resData.message,
+      });
+    } else if (response.ok) {
+      dispatch({
+        type: ERROR,
+        error: "Success",
+        message: resData.message,
+      });
+    }
+  };
+};
+
+export const deleteUser = (id) => {
+  return async (dispatch, getState) => {
+    const { token } = getState().auth;
+
+    const response = await fetch(`${mainLink}/api/registeration`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": token,
+      },
+      body: JSON.stringify({ userId: id }),
+    });
+
+    const resData = await response.json();
+
+    if (!response.ok) {
+      dispatch({
+        type: ERROR,
+        error: resData.error,
+        message: resData.message,
+      });
+    } else if (response.ok) {
+      dispatch({
+        type: ERROR,
+        error: "Success",
+        message: resData.message,
+      });
+    }
+  };
+};

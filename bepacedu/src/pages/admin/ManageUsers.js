@@ -21,25 +21,43 @@ import certificate from "../../assets/certificate.png";
 import Input from "../../components/input/Input";
 
 import * as usersActions from "../../store/users/usersActions";
+import * as errorActions from "../../store/auth/authActions";
 
 import DataCard from "./DataCard";
 import { useDispatch, useSelector } from "react-redux";
 import { mainLink } from "../../store/link";
 
+import ErrorModal from "../../components/error/ErrorModal";
+
 const ManageUsers = () => {
   const userDetails = useLocation().state[0];
 
-  const { firstName, lastName, adminType, token } = useSelector(
-    (state) => state.auth
-  );
+  const { firstName, lastName, adminType, token, error, errorMessage } =
+    useSelector((state) => state.auth);
 
   const [userImage, setUserImage] = useState("");
   const [editModal, setEditModal] = useState(false);
   const [trainerData, setTrainerData] = useState(false);
   const [newRating, setNewRating] = useState("");
   const [activeCourses, setActiveCourses] = useState([]);
+  const [phoneEdit, setPhoneEdit] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState(userDetails.phone);
+  const [whatsApp, setWhatsApp] = useState(userDetails.whatsApp);
 
   const [adminFeedback, setAdminFeedback] = useState("");
+
+  const getBack = async () => {
+    const userDetails = window.localStorage.getItem("userDetails");
+    const userData = JSON.parse(userDetails);
+
+    dispatch(errorActions.getUserBack(userData.user, userData.token));
+  };
+
+  useEffect(() => {
+    if (!token) {
+      getBack();
+    }
+  }, [token]);
 
   useEffect(() => {
     if (userDetails.image) {
@@ -106,6 +124,20 @@ const ManageUsers = () => {
     findCourse();
   }, [findCourse]);
 
+  const clearError = () => {
+    dispatch(errorActions.clearError());
+  };
+
+  if (error) {
+    return (
+      <ErrorModal title={error} message={errorMessage} onConfirm={clearError} />
+    );
+  }
+  const submitEdit = () => {
+    dispatch(usersActions.updateUser(userDetails._id, phoneNumber, whatsApp));
+    setPhoneEdit(false);
+  };
+
   return (
     <div className={classes.mainContainer}>
       <div className={classes.adminMainContainer}>
@@ -125,7 +157,40 @@ const ManageUsers = () => {
             <h3> {userDetails.experience} years of Experience </h3>
           )}
         </DataCard>
-        <DataCard title="Contact Information" image={contact}>
+        <DataCard
+          title="Contact Information"
+          image={contact}
+          editing
+          onClick={() => setPhoneEdit(true)}
+        >
+          <div
+            className={
+              phoneEdit ? classes.phoneModal : classes.removePhoneModal
+            }
+          >
+            <div
+              className={classes.editDiv}
+              style={{ padding: 15 }}
+              onClick={() => setPhoneEdit(false)}
+            >
+              <img className={classes.editImage} src={close} alt="close" />
+            </div>
+            <Input
+              title="Edit Phone Number"
+              defaultValue={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+            <div style={{ marginTop: 50 }} />
+            <Input
+              title="Edit WhatsApp Number"
+              defaultValue={whatsApp}
+              onChange={(e) => setWhatsApp(e.target.value)}
+            />
+            <div style={{ marginTop: 50 }} />
+            <div className={classes.buttonContainer} onClick={submitEdit}>
+              <button className={classes.submit}>Submit</button>
+            </div>
+          </div>
           <div className={classes.row}>
             {userDetails.userEmail && (
               <div className={classes.innerData}>
