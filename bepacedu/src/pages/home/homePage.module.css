@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap");
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(rgba(53, 82, 66, 0.4), rgba(47, 80, 63, 0.4)),
+    url("../../assets/learning.jpg") center no-repeat;
+  background-size: 100% 100%;
+}
+
+.logoContainer {
+  margin: 5vw 5vw;
+}
+
+.dataContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+  align-items: center;
+  margin-top: 3vw;
+  transform: scale(0.5) translateY(100vh);
+  transition: all 1.2s;
+}
+
+.dataMoving {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  transform: scale(1) translateY(0);
+  transition: all 1.2s;
+}
+
+.slogan {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  margin-top: 3vw;
+  transform: scale(0.5) translateY(-100vh);
+  transition: all 1.2s;
+}
+
+.sloganMoving {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3vw;
+  width: 100vw;
+  transform: scale(1) translateY(0);
+  transition: all 1.2s;
+}
+
+.dataContainer {
+  font-size: 0rem;
+  transform: translateY(15rem);
+  text-shadow: var(--primary-color);
+  transition: 2s;
+}
+
+.dataMoving strong,
+.dataContainer strong,
+.sloganMoving strong,
+.slogan strong {
+  color: #fff;
+  font-size: 2.5rem;
+  font-family: "Lobster", cursive;
+  text-shadow: #01161e -5px 5px;
+}
+
+.capital {
+  text-decoration: underline;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 3vw;
+  width: 30%;
+}
+
+.button {
+  width: 30%;
+  height: 2.8rem;
+  border-radius: 8px;
+  outline: none;
+  border: #01161e solid 2.5px;
+  cursor: pointer;
+  font-family: "Playfair Display", serif;
+  font-size: 1.2rem;
+  background: #aec3b0;
+  font-weight: bold;
+  transition: all 1.5s;
+}
+
+.button:hover {
+  background: #01161e;
+  color: #fff;
+}
+
+.button:active {
+  box-shadow: 0 0px #666;
+  transform: translateY(4px);
+}

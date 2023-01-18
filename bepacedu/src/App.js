@@ -12,13 +12,17 @@ import Groups from "./pages/admin/Groups";
 import Payments from "./pages/admin/Payments";
 import EditCourse from "./pages/admin/EditCourse";
 import HomePage from "./pages/home/HomePage";
+import UserHome from "./pages/userHomePage/UserHome";
+import Resolve from "./pages/auth/Resolve";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/registeration" element={<Registeration />} />
-      <Route path="/admin_auth" element={<AdminAuth />} />
+      <Route path="/resolve" element={<Resolve />} />
+      <Route path="/home" element={<UserHome />} />
+      <Route path="/auth" element={<AdminAuth />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/admins_data" element={<MainAdminPage />} />
       <Route path="/users" element={<ShowUsers />} />

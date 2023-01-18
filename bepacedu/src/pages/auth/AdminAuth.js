@@ -26,7 +26,7 @@ const AdminAuth = () => {
 
     if (userToken || token) {
       dispatch(authActions.getUserBack(userData.user, userData.token));
-      navigate("/dashboard");
+      navigate("/resolve");
     }
   }, [dispatch, navigate, token]);
 
@@ -55,7 +55,7 @@ const AdminAuth = () => {
   const submit = () => {
     dispatch(authActions.login(userEmail, password));
 
-    navigate("/dashboard");
+    navigate("/resolve");
   };
   if (error) {
     return (

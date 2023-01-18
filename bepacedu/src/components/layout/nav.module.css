@@ -8,8 +8,10 @@
 .mainHeader {
   width: 100%;
   height: 8rem;
-  display: block;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
+  align-items: center;
   padding: 15px;
   background: #fff;
   box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
@@ -19,8 +21,8 @@
 }
 
 .image {
-  width: 180px;
-  height: 120px;
+  width: 9.4vw;
+  height: 6.4vw;
   cursor: pointer;
   margin-left: 2vw;
 }
@@ -53,4 +55,59 @@
 .headerContent {
   width: 60%;
   align-self: center;
+}
+
+.buttonsContainer {
+  width: calc(65vw - 9.4vw);
+  height: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  margin-left: 8vw;
+  margin-top: 2vw;
+}
+
+.container {
+  height: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px;
+  text-decoration: none;
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
+  color: #000;
+}
+
+.container:active {
+  box-shadow: 0 0px #666;
+  transform: translateY(4px);
+}
+
+.activeContainer {
+  height: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #aec3b0;
+  border-radius: 8px;
+  box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
+  text-decoration: underline;
+  color: #000;
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
+}
+
+.container:hover {
+  background: #aec3b0;
+  border-radius: 8px;
+  box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
 }

@@ -52,6 +52,8 @@ export const newUser = (userDetails) => {
 
     const resData = await response.json();
 
+    console.log(resData);
+
     if (!response.ok) {
       dispatch({
         type: ERROR,
@@ -80,7 +82,17 @@ export const login = (email, password) => {
 
     const resData = await response.json();
 
+    console.log(resData);
+
     const { user, token } = resData;
+
+    if (!response.ok) {
+      dispatch({
+        type: ERROR,
+        error: resData.error,
+        message: resData.message,
+      });
+    }
 
     window.localStorage.setItem(
       "userDetails",
