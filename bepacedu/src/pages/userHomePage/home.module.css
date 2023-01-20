@@ -1,0 +1,11 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(rgba(53, 82, 66, 0.65), rgba(87, 80, 63, 0.65)),
+    url("../../assets/home.jpg") center no-repeat;
+  background-size: 100% 100%;
+  width: 100vw;
+  height: calc(100vh - 9vw);
+}

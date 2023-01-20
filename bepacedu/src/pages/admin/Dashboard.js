@@ -12,9 +12,11 @@ import certificate from "../../assets/certificate.png";
 import courses from "../../assets/courses.png";
 import admin from "../../assets/admin.png";
 import support from "../../assets/support.png";
-import session from "../../assets/session.png";
+import article from "../../assets/article.png";
+import home from "../../assets/home.png";
 
 import ItemCard from "./ItemCard";
+import ModifyHome from "./modifyHome/ModifyHome";
 
 const Dashboard = () => {
   const { token, firstName, lastName, adminType, userEmail } = useSelector(
@@ -28,7 +30,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (!token) {
-      navigate("/admin_auth");
+      navigate("/auth");
     }
   }, [navigate, token]);
 
@@ -94,6 +96,25 @@ const Dashboard = () => {
             onClick={() => {}}
             color="#c2dbdc"
           />
+          {adminType === "Main" && (
+            <ItemCard
+              title="Modify Home"
+              image={home}
+              onClick={() =>
+                navigate("/admin/modify_home", { state: { color: "#93b7be" } })
+              }
+              color="#93b7be"
+            />
+          )}
+
+          {adminType === "Main" && (
+            <ItemCard
+              title="Articles"
+              image={article}
+              onClick={() => {}}
+              color="#c2dbdc"
+            />
+          )}
         </div>
         <button className={classes.logOut} onClick={logOut}>
           Logout

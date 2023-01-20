@@ -1,0 +1,277 @@
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.innerContainer {
+  width: 70%;
+  height: 100%;
+  border: navy solid 2.5px;
+  border-radius: 8px;
+  box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.add {
+  margin-top: 1.5vw;
+  width: 20%;
+  height: 2.5rem;
+  background: #aec3b0;
+  border: #01161e solid 2.5px;
+  border-radius: 8px;
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.addIcon,
+.imageClose:active,
+.add:active {
+  box-shadow: 0 0px #666;
+  transform: translateY(4px);
+}
+
+.closeContainer {
+  padding: 15px;
+  width: 90%;
+}
+
+.imageClose {
+  height: 2vw;
+  width: 2vw;
+  cursor: pointer;
+}
+
+.modalOpened,
+.modalClosed {
+  width: 60vw;
+  height: 50vw;
+  border: #01161e solid 2.5px;
+  border-radius: 8px;
+  position: absolute;
+  background: rgb(225, 225, 225);
+  top: 15vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: scale(1);
+  transition: all 1s;
+  overflow: scroll;
+}
+
+.modalClosed {
+  transform: scale(0);
+  transition: all 1s;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60%;
+}
+
+.label {
+  font-weight: bold;
+  color: navy;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+.area {
+  width: 100%;
+  height: 10rem;
+  font-size: 1.2rem;
+}
+
+.innerModal {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.lastContainer,
+.mainContainer {
+  width: 90%;
+  display: flex;
+  height: auto;
+  max-height: 10vw;
+  margin-top: 30px;
+  border-bottom: #000 solid 2.5px;
+  padding-bottom: 10px;
+}
+
+.lastContainer {
+  border-bottom: none;
+}
+
+.itemsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60%;
+}
+
+.data strong {
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.data p {
+  font-size: 1.2rem;
+  text-align: justify;
+}
+
+.smallRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 20%;
+}
+
+.sideImage {
+  width: 10vw;
+  height: 10vw;
+}
+
+.deleteIcon {
+  width: 2.5vw;
+  height: 2.5vw;
+  color: red;
+}
+
+.current {
+  width: 15vw;
+  height: 15vw;
+}
+
+.articleContainer {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  border-top: #01161e solid 2.5px;
+  padding-top: 10px;
+}
+
+.pointsContainer {
+  width: 100%;
+  margin-top: 3vw;
+}
+
+.pointsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-top: #01161e solid 2.5px;
+  padding-top: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.itemContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 3vw;
+  border-bottom: rgb(243, 8, 8) solid 3px;
+}
+
+.articelImage {
+  width: 45vw;
+  margin-top: 5vw;
+}
+
+.mainRow {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.smallMainRow {
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.mainRemove {
+  color: red;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.mainAdd {
+  color: var(--primary-color);
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.subtitleRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 80%;
+  margin-left: 5vw;
+}
+
+.addPointIcon {
+  color: #2c131b;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.points {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.itemContainer ul {
+  font-size: 1.5rem;
+}
+
+.pointRow {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 0.5vw;
+}
+
+.input {
+  width: 65%;
+  height: 2.2rem;
+  border: #2c131b solid 1.5px;
+  border-radius: 8px;
+  font-size: large;
+  text-align: center;
+}
+
+.removePoint {
+  color: rgb(193, 38, 38);
+  cursor: pointer;
+}

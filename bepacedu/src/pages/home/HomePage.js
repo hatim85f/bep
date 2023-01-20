@@ -63,9 +63,6 @@ const HomePage = () => {
           <button className={classes.button} onClick={() => navigate("/auth")}>
             Login
           </button>
-          <button className={classes.button} onClick={logOut}>
-            Logout
-          </button>
         </div>
       </div>
       <div className={move ? classes.dataMoving : classes.dataContainer}>

@@ -19,16 +19,18 @@ const AdminAuth = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const userDetails = localStorage.getItem("userDetails");
-    const userData = JSON.parse(userDetails);
+    if (!token) {
+      const userDetails = localStorage.getItem("userDetails");
+      const userData = JSON.parse(userDetails);
 
-    const userToken = userData ? userData.token : null;
-
-    if (userToken || token) {
-      dispatch(authActions.getUserBack(userData.user, userData.token));
-      navigate("/resolve");
+      if (userData) {
+        dispatch(authActions.getUserBack(userData.user, userData.token));
+        navigate("/resolve");
+      }
     }
   }, [dispatch, navigate, token]);
+
+  console.log("userData");
 
   const {
     value: userEmail,

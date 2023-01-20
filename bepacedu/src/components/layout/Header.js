@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./nav.module.css";
 
 import bepac from "../../assets/bepac.png";
+import { useDispatch, useSelector } from "react-redux";
+
+import * as authActions from "../../store/auth/authActions";
 
 const Header = () => {
   return (

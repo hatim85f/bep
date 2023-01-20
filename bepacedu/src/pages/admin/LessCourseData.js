@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import classes from "./course.module.css";
 import DataCard from "./DataCard";
 
-import { confirmAlert } from "react-confirm-alert";
-
 import { MdDeleteSweep } from "react-icons/md";
 
 import * as coursesActions from "../../store/courses/coursesActions";

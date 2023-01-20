@@ -19,6 +19,7 @@ app.use("/api/courses", require("./routes/api/courses"));
 app.use("/api/category", require("./routes/api/category"));
 app.use("/api/groups", require("./routes/api/groups"));
 app.use("/api/payments", require("./routes/api/payments"));
+app.use("/api/home", require("./routes/api/home"));
 
 // serve static assets in production
 const PORT = process.env.PORT || 5000;

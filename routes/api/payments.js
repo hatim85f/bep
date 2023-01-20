@@ -28,7 +28,7 @@ router.get("/", auth, async (req, res) => {
           status: users[data].payments[items].status,
           receipt: users[data].payments[items].receipt,
           isScheduled: users[data].payments[items].isScheduled,
-          courseName: course.name,
+          courseName: course ? course.name : "Program un available",
           userId: users[data]._id,
           userName: users[data].firstName + " " + users[data].lastName,
           userPhone: users[data].phone,

@@ -14,6 +14,7 @@ import EditCourse from "./pages/admin/EditCourse";
 import HomePage from "./pages/home/HomePage";
 import UserHome from "./pages/userHomePage/UserHome";
 import Resolve from "./pages/auth/Resolve";
+import ModifyHome from "./pages/admin/modifyHome/ModifyHome";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
       <Route path="admin/groups" element={<Groups />} />
       <Route path="/admin/payments" element={<Payments />} />
       <Route path="/admin/edit_course" element={<EditCourse />} />
+      <Route path="/admin/modify_home" element={<ModifyHome />} />
     </Routes>
   );
 }
