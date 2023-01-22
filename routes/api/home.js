@@ -3,7 +3,7 @@ const router = express.Router();
 const auth = require("../../middleware/auth");
 const HomeData = require("../../models/HomeData");
 
-router.get("/", auth, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const homeItems = await HomeData.find();
 

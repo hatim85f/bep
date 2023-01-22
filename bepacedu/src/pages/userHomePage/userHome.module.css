@@ -5,7 +5,7 @@
 .mainContainer {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center;
   background: linear-gradient(
       rgba(153, 162, 157, 0.65),
@@ -13,8 +13,30 @@
     ),
     url("../../assets/home.jpg") center no-repeat;
   background-size: 100% 100%;
-  width: 100vw;
+  width: 100%;
   height: calc(100vh - 9vw);
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -4vw;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  font-weight: bold;
+  color: #265df2;
+  background: rgba(239, 239, 239, 0.5);
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 .sRow {
@@ -24,9 +46,10 @@
   align-items: center;
   width: 40%;
 }
+
 .itemsContainer {
   height: 60vh;
-  width: 30vw;
+  width: 25vw;
   margin-top: 5vw;
   border-radius: 15px;
   border: var(--primary-color) solid 2.5px;
@@ -36,31 +59,17 @@
   background: rgba(239, 239, 239, 0.5);
 }
 
-.card_image {
-  position: relative;
-  height: 150px;
-  width: 150px;
-  padding: 3px;
-}
-
-.card_image .card_img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid #4070f4;
-  background: #efefef;
+.slide_container {
+  max-width: 1120px;
+  width: 18vw;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
 }
 
 .slide_content {
   margin: 0 40px;
-}
-
-.slide_container {
-  max-width: 1120px;
-  width: 100%;
-  /* background-color: grey; */
-  padding: 40px 0;
 }
 
 .card {
@@ -111,6 +120,22 @@
   background-color: #fff;
 }
 
+.card_image {
+  position: relative;
+  height: 150px;
+  width: 150px;
+  padding: 3px;
+}
+
+.card_image .card_img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #4070f4;
+  background: #efefef;
+}
+
 .name {
   font-size: 18px;
   color: #333;
@@ -141,8 +166,9 @@
 }
 
 .btn {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   cursor: pointer;
+  color: #0645f2;
 }
 
 .btn:active {
@@ -160,7 +186,12 @@
 
 @keyframes moveInL {
   0% {
-    transform: translate(-1000%, 0);
+    transform: translate(-50%, 0);
+    opacity: 0;
+    z-index: -1000;
+  }
+  95% {
+    opacity: 1;
   }
   100% {
     transform: translate(0%, 0);
@@ -169,7 +200,9 @@
 
 @keyframes moveOute {
   0% {
-    transform: translate(1000%, 0);
+    transform: translate(50%, 0);
+    opacity: 0;
+    z-index: -1000;
   }
   100% {
     transform: translate(0%, 0);

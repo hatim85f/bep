@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
-import classes from "./userHome.module.css";
 import { useDispatch, useSelector } from "react-redux";
+
+import classes from "./home.module.css";
+import swiper from "./swiper-bundle.min.css";
 
 import * as homeActions from "../../store/homeData/homeActions";
 
 import { MdArrowForwardIos, MdOutlineArrowBackIosNew } from "react-icons/md";
+
 const UserHome = () => {
+  const { token } = useSelector((state) => state.auth);
   const { items } = useSelector((state) => state.home);
   const [currentIndex, setCurrentIndex] = useState(1);
-  const [swipingLeft, setSwipingLeft] = useState(false);
   const [swipingRight, setSwipingRight] = useState(false);
+  const [swipingLeft, setSwipingLeft] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -21,7 +25,13 @@ const UserHome = () => {
     let neededIndex = currentIndex;
     const rightIndex = neededIndex + 1;
 
-    setSwipingRight(true);
+    const divs = document.querySelectorAll(`.${classes.questionsContainer}`);
+
+    divs[0].classList.add(`${classes.out}`);
+
+    setTimeout(() => {
+      divs[0].classList.remove(`${classes.out}`);
+    }, 1000);
 
     if (neededIndex === items.length - 1) {
       setCurrentIndex(0);
@@ -35,8 +45,15 @@ const UserHome = () => {
     let neededIndex = currentIndex;
     const rightIndex = neededIndex - 1;
 
-    setSwipingRight(false);
-    setSwipingLeft(true);
+    const divs = document.querySelectorAll(`.${classes.slide_container}`);
+
+    divs[0].classList.add(`${classes.in}`);
+
+    setTimeout(() => {
+      divs[0].classList.remove(`${classes.in}`);
+    }, 1000);
+
+    console.log(divs);
 
     if (neededIndex === 0) {
       setCurrentIndex(items.length - 1);
@@ -48,27 +65,16 @@ const UserHome = () => {
 
   return (
     <div className={classes.mainContainer}>
-      <div className={classes.titleContainer}>
-        <span className={classes.title}>Our Services</span>
-      </div>
       <div className={classes.sRow}>
         <MdOutlineArrowBackIosNew className={classes.btn} onClick={swipeLeft} />
         {items && items.length > 0 && (
           <div className={classes.itemsContainer}>
             {items.map((item, index) => {
               return (
-                <div className={`${classes.slide_container} `} key={index}>
+                <div className={`${classes.slide_container}`} key={index}>
                   {index === currentIndex && (
                     <div className={classes.slide_content}>
-                      <div
-                        className={`${
-                          index === currentIndex && swipingRight
-                            ? classes.out
-                            : index === currentIndex &&
-                              swipingLeft &&
-                              classes.in
-                        }`}
-                      >
+                      <div className={`${classes.card_wrapper}`}>
                         <div className={classes.card}>
                           <div className={classes.image_content}>
                             <span className={classes.overlay}></span>

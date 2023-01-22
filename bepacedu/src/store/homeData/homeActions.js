@@ -64,14 +64,8 @@ export const addHomeItem = (
 
 export const getItems = () => {
   return async (dispatch, getState) => {
-    const { token } = getState().auth;
-
     const response = await fetch(`${mainLink}/api/home`, {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "x-auth-token": token,
-      },
     });
 
     const resData = await response.json();
