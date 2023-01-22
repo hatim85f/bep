@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as homeActions from "../../store/homeData/homeActions";
 
 import { MdArrowForwardIos, MdOutlineArrowBackIosNew } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 const UserHome = () => {
   const { items } = useSelector((state) => state.home);
   const [currentIndex, setCurrentIndex] = useState(1);
@@ -45,6 +46,8 @@ const UserHome = () => {
 
     setCurrentIndex(rightIndex);
   };
+
+  const navigate = useNavigate();
 
   return (
     <div className={classes.mainContainer}>
@@ -88,7 +91,14 @@ const UserHome = () => {
                               {item.details}{" "}
                             </p>
 
-                            <button className={classes.button}>
+                            <button
+                              className={classes.button}
+                              onClick={() =>
+                                navigate("/home/services_details", {
+                                  state: items[index],
+                                })
+                              }
+                            >
                               View More
                             </button>
                           </div>

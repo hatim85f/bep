@@ -1,0 +1,106 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    rgba(0, 145, 71, 0.65),
+    rgba(164, 150, 154, 0.65)
+  );
+  background-size: 100% 100%;
+  width: 100%;
+}
+
+.inputContainer {
+  width: 60vw;
+  height: 100%;
+  background: rgba(233, 226, 228, 0.7);
+  border: navy solid 2.5px;
+  border-radius: 8px;
+  padding: 2vw 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.valuesContainer {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: var(--green-color) solid 2.5px;
+  padding: 1vw;
+  margin-bottom: 1vw;
+}
+
+.label {
+  font-weight: bold;
+  color: navy;
+  font-size: 1.4rem;
+}
+
+.add {
+  font-size: 2.5rem;
+  cursor: pointer;
+  color: var(--green-color);
+}
+
+.submit:active,
+.add:active {
+  box-shadow: 0 0px #666;
+  transform: translateY(4px);
+}
+
+.valueRow {
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: var(--green-color) solid 2.5px;
+  padding: 1vw;
+}
+
+.remove {
+  font-size: 2rem;
+  color: red;
+  cursor: pointer;
+}
+
+.teamContainer {
+  width: 100%;
+  border-bottom: #000 solid 2.5px;
+  padding: 1vw 0;
+}
+
+.teamRemove {
+  color: red;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-top: 15px;
+  float: right;
+  margin-right: 3vw;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 5rem;
+}
+
+.submit {
+  background: var(--green-color);
+  width: 30%;
+  height: 2.5rem;
+  margin-top: 2vw;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+}

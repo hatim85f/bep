@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { aboutReducer } from "./about/aboutReducer";
 import { adminReducer } from "./admin/adminReducers";
 import { authReducer } from "./auth/authReducer";
 import { coursesReducer } from "./courses/coursesReducer";
@@ -18,6 +19,7 @@ const store = configureStore({
     groups: groupsReducer,
     payments: paymentsReducer,
     home: homeReducer,
+    about: aboutReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ immutableCheck: false }),

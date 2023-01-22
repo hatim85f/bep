@@ -14,6 +14,7 @@ import admin from "../../assets/admin.png";
 import support from "../../assets/support.png";
 import article from "../../assets/article.png";
 import home from "../../assets/home.png";
+import aboutUs from "../../assets/aboutUs.png";
 
 import ItemCard from "./ItemCard";
 import ModifyHome from "./modifyHome/ModifyHome";
@@ -106,13 +107,25 @@ const Dashboard = () => {
               color="#93b7be"
             />
           )}
+          {adminType === "Main" && (
+            <ItemCard
+              title="Company Portfolio"
+              image={aboutUs}
+              onClick={() =>
+                navigate("/admin/company_portfolio", {
+                  state: { color: "#c2dbdc" },
+                })
+              }
+              color="#c2dbdc"
+            />
+          )}
 
           {adminType === "Main" && (
             <ItemCard
               title="Articles"
               image={article}
               onClick={() => {}}
-              color="#c2dbdc"
+              color="#93b7be"
             />
           )}
         </div>

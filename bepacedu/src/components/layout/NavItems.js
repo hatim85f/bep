@@ -23,7 +23,7 @@ const NavItems = () => {
         className={(navData) =>
           navData.isActive ? classes.activeContainer : classes.container
         }
-        to="/#"
+        to="/about_us"
       >
         <strong>About Us</strong>
       </NavLink>

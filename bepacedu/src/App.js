@@ -15,6 +15,9 @@ import HomePage from "./pages/home/HomePage";
 import UserHome from "./pages/userHomePage/UserHome";
 import Resolve from "./pages/auth/Resolve";
 import ModifyHome from "./pages/admin/modifyHome/ModifyHome";
+import ServiceDetails from "./pages/services/ServiceDetails";
+import AboutUsPage from "./pages/about/AboutUsPage";
+import CompanyPortfolio from "./pages/admin/CompanyPortfolio";
 
 function App() {
   return (
@@ -35,6 +38,9 @@ function App() {
       <Route path="/admin/payments" element={<Payments />} />
       <Route path="/admin/edit_course" element={<EditCourse />} />
       <Route path="/admin/modify_home" element={<ModifyHome />} />
+      <Route path="/admin/company_portfolio" element={<CompanyPortfolio />} />
+      <Route path="/home/services_details" element={<ServiceDetails />} />
+      <Route path="/about_us" element={<AboutUsPage />} />
     </Routes>
   );
 }
