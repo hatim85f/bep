@@ -18,6 +18,7 @@ import ModifyHome from "./pages/admin/modifyHome/ModifyHome";
 import ServiceDetails from "./pages/services/ServiceDetails";
 import AboutUsPage from "./pages/about/AboutUsPage";
 import CompanyPortfolio from "./pages/admin/CompanyPortfolio";
+import UserProgram from "./pages/programs/UserProgram";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
       <Route path="/admin/company_portfolio" element={<CompanyPortfolio />} />
       <Route path="/home/services_details" element={<ServiceDetails />} />
       <Route path="/about_us" element={<AboutUsPage />} />
+      <Route path="/our_programs" element={<UserProgram />} />
     </Routes>
   );
 }

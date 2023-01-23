@@ -31,7 +31,7 @@ const NavItems = () => {
         className={(navData) =>
           navData.isActive ? classes.activeContainer : classes.container
         }
-        to="/#"
+        to="/our_programs"
       >
         <strong>Programs</strong>
       </NavLink>

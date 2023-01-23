@@ -104,3 +104,14 @@
   font-size: 1.2rem;
   cursor: pointer;
 }
+
+.founderImage {
+  height: 30vw;
+  width: auto;
+  border-radius: 25px;
+  box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  margin: 1vw 0;
+  border: #000 solid 2.5px;
+}

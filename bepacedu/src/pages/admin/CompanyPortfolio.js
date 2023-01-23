@@ -52,7 +52,14 @@ const CompanyPortfolio = () => {
       setPhilosophy(about[0].philosophy);
       setValues(about[0].values);
       setFounderMessage(about[0].founderMessage);
-      setFounder(about[0].founder);
+      setFounder([
+        {
+          name: about[0].founder.name,
+          certificate: about[0].founder.certificate,
+          image: about[0].founder.image,
+          history: about[0].founder.history,
+        },
+      ]);
       setTeam(about[0].team);
       setEditing(true);
     }
@@ -244,15 +251,22 @@ const CompanyPortfolio = () => {
         <Input
           title="Founder Name"
           onChange={(e) => changeFounderName(e.target.value)}
-          defaultValue={founder.name}
+          defaultValue={founder[0].name}
         />
         <Input
           title="Founder Certificates"
           onChange={(e) => changeFounderCertificated(e.target.value)}
-          defaultValue={founder.certificate}
+          defaultValue={founder[0].certificate}
         />
+        {founder[0].image.length > 0 && (
+          <img
+            src={founder[0].image}
+            className={classes.founderImage}
+            alt="founder"
+          />
+        )}
         <UploadImage
-          title="Founder Image"
+          title={founder[0].image.length > 0 ? "Change Image" : "Founder Image"}
           path="/bepac/founder/image"
           getImageURL={(url) => changeFounderImage(url)}
         />

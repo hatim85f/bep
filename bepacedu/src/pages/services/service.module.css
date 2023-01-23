@@ -13,7 +13,7 @@
     url("../../assets/home.jpg") center no-repeat;
   background-size: 100% 100%;
   width: 100%;
-  height: calc(100vh - 9vw);
+  height: calc(100% - 9vw);
   padding: 0 0.5vw;
 }
 

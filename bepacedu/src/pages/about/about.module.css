@@ -1,0 +1,209 @@
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500&family=Sofia+Sans:ital,wght@1,400;1,500&display=swap");
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(
+      rgba(153, 162, 157, 0.65),
+      rgba(237, 235, 229, 0.65)
+    ),
+    url("../../assets/home.jpg") center no-repeat;
+  background-size: 100% 100%;
+  width: 100%;
+  height: calc(100% - 9vw);
+  padding: 0 0.5vw;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container strong {
+  font-family: "Abril Fatface", cursive;
+  font-size: 2.2rem;
+  text-align: center;
+  margin-top: 2vw;
+}
+
+.missionContainer p {
+  font-weight: 500;
+  font-size: 1.1rem;
+  line-height: 2rem;
+}
+
+.valuesContainer,
+.missionContainer {
+  background: rgba(250, 250, 250, 0.5);
+  padding: 1vw;
+  border-radius: 25px;
+  box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
+}
+
+.valuesContainer {
+  padding: 2vw;
+}
+
+.valuesContainer p {
+  font-family: "Sofia Sans", sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: justify;
+  line-height: 1.5vw;
+}
+
+.rowContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 2vw;
+}
+
+.rowItem,
+.item {
+  width: 32vw;
+  background: #fff;
+  margin: 0 0.5vw;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: var(--primary-color) solid 2.5px;
+  box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
+  padding: 0.5vw;
+}
+
+.rowItem {
+  width: 48vw;
+}
+
+.smallRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 60%;
+  align-items: center;
+}
+
+.smallRow h2 {
+  font-family: "Lobster", cursive;
+  font-size: 2rem;
+  margin-top: 1.5vw;
+}
+
+.item p {
+  font-family: "Sofia Sans", sans-serif;
+  font-size: 1.1rem;
+  text-align: justify;
+  line-height: 1.5vw;
+}
+
+.imageContainer {
+  border: var(--primary-color) solid 2.5px;
+  border-radius: 50%;
+  padding: 0.5vw;
+  box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
+}
+
+.logo {
+  width: 3vw;
+  height: 3vw;
+}
+
+.founderRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.rowItem strong {
+  font-family: "Sofia Sans", sans-serif;
+  font-size: 2rem;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.rowItem small {
+  color: red;
+  font-weight: bold;
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+.founderImage {
+  height: 20vw;
+  width: auto;
+  border-radius: 25px;
+  box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  margin: 1vw 0;
+  border: #000 solid 2.5px;
+}
+
+.points {
+  font-weight: bold;
+  font-size: 1.2rem;
+  line-height: 2vw;
+  font-style: italic;
+}
+
+.teamContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.profileContainer {
+  border: var(--primary-color) solid 2.5px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.teamItem {
+  margin: 1vw;
+  width: 20vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background: rgba(250, 250, 250, 0.5);
+  padding: 1vw;
+  border: #000 solid 1.5px;
+  border-radius: 25px;
+  box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.innerDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.innerDiv strong {
+  font-size: 1.2rem;
+}
+
+.innerDiv small {
+  font-size: 1rem;
+  font-style: italic;
+  text-align: center;
+}
+
+.smallImage {
+  width: 6vw;
+  height: 6vw;
+}
