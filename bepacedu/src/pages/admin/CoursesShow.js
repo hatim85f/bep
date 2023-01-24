@@ -222,13 +222,7 @@ const CoursesShow = () => {
           </button>
         </div>
       </div>
-      <div
-        className={
-          openModal && groups && groups.length > 0
-            ? classes.courseModal
-            : classes.removeModal
-        }
-      >
+      <div className={openModal ? classes.courseModal : classes.removeModal}>
         <div className={classes.closeDiv} onClick={() => setOpenModal(false)}>
           <img src={close} className={classes.closeImg} alt="close" />
         </div>
