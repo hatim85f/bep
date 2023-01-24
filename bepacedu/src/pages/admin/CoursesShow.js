@@ -89,7 +89,7 @@ const CoursesShow = () => {
   const clearError = () => {
     dispatch(authActions.clearError());
   };
-  console.log(token);
+
   if (error) {
     return (
       <ErrorModal title={error} message={errorMessage} onConfirm={clearError} />
@@ -222,16 +222,22 @@ const CoursesShow = () => {
           </button>
         </div>
       </div>
-      <div className={openModal ? classes.courseModal : classes.removeModal}>
+      <div
+        className={
+          openModal && groups.length > 0
+            ? classes.courseModal
+            : classes.removeModal
+        }
+      >
         <div className={classes.closeDiv} onClick={() => setOpenModal(false)}>
           <img src={close} className={classes.closeImg} alt="close" />
         </div>
-        {groups.length > 0 ? (
+        {groups && groups.length > 0 ? (
           <h2> Available Groups </h2>
         ) : (
           <h2> No Available Groups </h2>
         )}
-        {groups.length > 0 ? (
+        {groups && groups.length > 0 ? (
           <div className={classes.tableContainer}>
             <table className={classes.groupTable}>
               <thead>

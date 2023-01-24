@@ -24,18 +24,20 @@ const HomePage = () => {
     dispatch(authActions.logOut());
   };
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (!token) {
       const userDetails = window.localStorage.getItem("userDetails");
       const userData = JSON.parse(userDetails);
 
-      if (userData) {
+      if (userData.user) {
         dispatch(authActions.getUserBack(userData.user, userData.token));
+      } else {
+        navigate("/auth");
       }
     }
-  }, [token, dispatch]);
-
-  const navigate = useNavigate();
+  }, [token, dispatch, navigate]);
 
   useEffect(() => {
     if (token) {
