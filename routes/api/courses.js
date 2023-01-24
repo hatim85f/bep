@@ -19,6 +19,19 @@ router.get("/", async (req, res) => {
   }
 });
 
+// get groups details for user to enroll to the course using course id
+router.get("/course_group", auth, async (req, res) => {
+  const { courseId } = req.query;
+
+  try {
+    const groups = await Groups.find({ course: courseId });
+
+    return res.status(200).json({ groups });
+  } catch (error) {
+    return res.status(500).send({ error: "Error", message: error.message });
+  }
+});
+
 // getting users active courses
 router.get("/active", auth, async (req, res) => {
   const { userId } = req.query;

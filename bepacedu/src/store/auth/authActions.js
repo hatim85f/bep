@@ -82,7 +82,7 @@ export const login = (email, password) => {
 
     const resData = await response.json();
 
-    console.log(resData);
+    console.log(resData, "resData");
 
     const { user, token } = resData;
 

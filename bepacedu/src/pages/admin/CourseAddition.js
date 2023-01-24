@@ -335,9 +335,11 @@ const CourseAddition = (props) => {
       frequency,
       brochure: brochureURL,
       targetedParticipants: forWhom,
+      category: category,
     };
 
     dispatch(coursesActions.addCourses(details));
+    dispatch(coursesActions.getCourses());
 
     setName("");
     setDescription("");
@@ -353,6 +355,7 @@ const CourseAddition = (props) => {
     setCategory("");
     setNumberOfHours(null);
     setNumberOfSessions(null);
+    setCategory("");
     setLearningObjective([
       {
         title: "After completing this program participants will be able to:",

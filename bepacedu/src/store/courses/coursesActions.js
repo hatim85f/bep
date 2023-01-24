@@ -74,7 +74,7 @@ export const getCategories = () => {
 export const updateCourse = (course, courseId) => {
   return async (dispatch, getState) => {
     const { token } = getState().auth;
-    const response = await fetch(`http://localhost:5000/api/courses`, {
+    const response = await fetch(`${mainLink}/api/courses`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

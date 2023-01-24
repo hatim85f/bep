@@ -83,6 +83,67 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
+router.put("/student", auth, async (req, res) => {
+  const { userId, groupId, courseId } = req.body;
+
+  try {
+    const user = await User.findOne({ _id: userId });
+    const group = await Groups.findOne({ _id: groupId });
+    const course = await Courses.findOne({ _id: courseId });
+
+    const previouslyFound = await Groups.findOne({
+      _id: groupId,
+      "participants.userId": userId,
+    });
+
+    if (previouslyFound) {
+      return res.status(500).send({
+        error: "Error !",
+        message: "You are previously registered in the same group",
+      });
+    }
+
+    await Groups.updateMany(
+      { _id: groupId },
+      {
+        $addToSet: {
+          participants: {
+            userId: userId,
+            name: user.firstName + " " + user.lastName,
+          },
+        },
+      }
+    );
+
+    await User.updateMany(
+      { _id: userId },
+      {
+        $addToSet: {
+          payments: {
+            courseId: group.course,
+            courseName: course.name,
+            requiredPayments: course.price,
+            isOffered: false,
+            offerPrice: 0,
+            status: "pending",
+            completed: false,
+          },
+          activeCourses: {
+            course: group.course,
+          },
+        },
+      }
+    );
+
+    return res.status(200).send({
+      message:
+        "You are enrolled Successfully, One of our admins will contact you soon on your registered WahtsApp Number",
+    });
+  } catch (error) {
+    return res.status(200).send({ message: error.message });
+  }
+});
+
 // adding participants to group data
 router.put("/students", auth, async (req, res) => {
   const { students, groupId } = req.body;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import classes from "./course.module.css";
@@ -14,17 +14,33 @@ import Input from "../../components/input/Input";
 import moment from "moment";
 
 import * as groupsActions from "../../store/groups/groupsActions";
+import * as authActions from "../../store/auth/authActions";
+import { mainLink } from "../../store/link";
+import ErrorModal from "../../components/error/ErrorModal";
 
 const CoursesShow = () => {
   const { course } = useLocation().state;
 
-  const { isAdmin } = useSelector((state) => state.auth);
+  const { isAdmin, token, _id, error, errorMessage } = useSelector(
+    (state) => state.auth
+  );
   const [openGroup, setOpenGroup] = useState(false);
   const [groupName, setGroupName] = useState("");
   const [startingDate, setStartingDate] = useState("");
   const [endingDate, setEndingDate] = useState("");
+  const [groups, setGroups] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!token) {
+      const userDetails = window.localStorage.getItem("userDetails");
+      const userData = JSON.parse(userDetails);
+
+      dispatch(authActions.getUserBack(userData.user, userData.token));
+    }
+  }, [token, dispatch]);
 
   const submit = () => {
     const group = {
@@ -42,7 +58,43 @@ const CoursesShow = () => {
     setOpenGroup(false);
   };
 
+  const enroll = async () => {
+    const response = await fetch(
+      `${mainLink}/api/courses/course_group?courseId=${course._id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": token,
+        },
+      }
+    );
+
+    const resData = await response.json();
+
+    const groups = resData.groups;
+    setGroups(groups);
+    setOpenModal(true);
+  };
+
+  const enrollToCourse = (group) => {
+    dispatch(groupsActions.enrollToGroup(group._id, _id, course._id));
+    setOpenModal(false);
+  };
+
+  const notifyEnroll = () => {};
+
   const navigate = useNavigate();
+
+  const clearError = () => {
+    dispatch(authActions.clearError());
+  };
+  console.log(token);
+  if (error) {
+    return (
+      <ErrorModal title={error} message={errorMessage} onConfirm={clearError} />
+    );
+  }
 
   return (
     <div className={classes.mainData}>
@@ -75,8 +127,7 @@ const CoursesShow = () => {
           </div>
           <div className={classes.objectivesContainer}>
             <p className={classes.dataParagraph}>
-              {" "}
-              {course.learningObjective.title}{" "}
+              {course.learningObjective.title}
             </p>
             <div className={classes.objectives}>
               <ul>
@@ -104,8 +155,7 @@ const CoursesShow = () => {
           </div>
           <div className={classes.single} style={{ marginTop: 30 }}>
             <strong className={classes.duration}>
-              {" "}
-              {course.numberOfHours} hours, {course.numberOfSessions} Session ,{" "}
+              {course.numberOfHours} hours, {course.numberOfSessions} Session ,
               {course.frequency}
             </strong>
           </div>
@@ -130,7 +180,7 @@ const CoursesShow = () => {
           {!isAdmin && (
             <button
               className={styles.additionBtn}
-              onClick={() => {}}
+              onClick={enroll}
               style={{ width: "30%" }}
             >
               Enroll
@@ -168,9 +218,67 @@ const CoursesShow = () => {
             style={{ width: "30%" }}
             className={styles.additionBtn}
           >
-            Submit{" "}
+            Submit
           </button>
         </div>
+      </div>
+      <div className={openModal ? classes.courseModal : classes.removeModal}>
+        <div className={classes.closeDiv} onClick={() => setOpenModal(false)}>
+          <img src={close} className={classes.closeImg} alt="close" />
+        </div>
+        {groups.length > 0 ? (
+          <h2> Available Groups </h2>
+        ) : (
+          <h2> No Available Groups </h2>
+        )}
+        {groups.length > 0 ? (
+          <div className={classes.tableContainer}>
+            <table className={classes.groupTable}>
+              <thead>
+                <tr>
+                  <th>Group</th>
+                  <th>Starting</th>
+                  <th>Ending</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {groups.map((g, i) => {
+                  return (
+                    <tr>
+                      <td> {g.groupName} </td>
+                      <td> {g.startingDate} </td>
+                      <td> {g.endingDate} </td>
+                      <td>
+                        {g.participants.length < 12 ? (
+                          <button
+                            className={classes.enrollBtn}
+                            onClick={() => enrollToCourse(g)}
+                          >
+                            Enroll
+                          </button>
+                        ) : (
+                          <strong>Full</strong>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div className={classes.buttonContainer}>
+            <button className={classes.enrollBtn} onClick={notifyEnroll}>
+              Ask For Enrollment
+            </button>
+            <strong className={classes.note}>
+              {" "}
+              One of Our admins will contact you soon on your registered
+              WhatsApp number{" "}
+            </strong>
+          </div>
+        )}
       </div>
     </div>
   );

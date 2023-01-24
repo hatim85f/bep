@@ -20,14 +20,15 @@ import ItemCard from "./ItemCard";
 import ModifyHome from "./modifyHome/ModifyHome";
 
 const Dashboard = () => {
-  const { token, firstName, lastName, adminType, userEmail } = useSelector(
-    (state) => state.auth
-  );
+  const { token, firstName, lastName, adminType, userEmail, isAdmin } =
+    useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logOut = () => {
     dispatch(authActions.logOut());
   };
+
+  console.log(isAdmin);
 
   useEffect(() => {
     if (!token) {
