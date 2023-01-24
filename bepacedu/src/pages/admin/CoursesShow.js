@@ -224,7 +224,7 @@ const CoursesShow = () => {
       </div>
       <div
         className={
-          openModal && groups.length > 0
+          openModal && groups && groups.length > 0
             ? classes.courseModal
             : classes.removeModal
         }
