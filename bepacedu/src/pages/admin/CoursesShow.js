@@ -15,15 +15,16 @@ import moment from "moment";
 
 import * as groupsActions from "../../store/groups/groupsActions";
 import * as authActions from "../../store/auth/authActions";
+import * as notificationsActions from "../../store/notifications/notificationsActions";
+
 import { mainLink } from "../../store/link";
 import ErrorModal from "../../components/error/ErrorModal";
 
 const CoursesShow = () => {
   const { course } = useLocation().state;
 
-  const { isAdmin, token, _id, error, errorMessage } = useSelector(
-    (state) => state.auth
-  );
+  const { isAdmin, token, _id, error, errorMessage, firstName, lastName } =
+    useSelector((state) => state.auth);
   const [openGroup, setOpenGroup] = useState(false);
   const [groupName, setGroupName] = useState("");
   const [startingDate, setStartingDate] = useState("");
@@ -82,7 +83,18 @@ const CoursesShow = () => {
     setOpenModal(false);
   };
 
-  const notifyEnroll = () => {};
+  console.log({ token });
+
+  const notifyEnroll = () => {
+    dispatch(
+      notificationsActions.addNotifications(
+        _id,
+        course._id,
+        `User ${firstName} ${lastName} is asking to enroll in ${course.name}`
+      )
+    );
+    setOpenModal(false);
+  };
 
   const navigate = useNavigate();
 
@@ -266,6 +278,17 @@ const CoursesShow = () => {
                 })}
               </tbody>
             </table>
+            <div className={classes.buttonContainer}>
+              <strong className={classes.note}>
+                {" "}
+                Ask for Enrollment If timings are not suitable One of Our admins
+                will contact you soon on your registered WhatsApp number{" "}
+              </strong>
+              <div style={{ marginTop: 30 }} />
+              <button className={classes.enrollBtn} onClick={notifyEnroll}>
+                Ask For Enrollment
+              </button>
+            </div>
           </div>
         ) : (
           <div className={classes.buttonContainer}>

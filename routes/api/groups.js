@@ -3,7 +3,10 @@ const auth = require("../../middleware/auth");
 const Groups = require("../../models/Groups");
 const User = require("../../models/User");
 const Courses = require("../../models/Courses");
+const Notifications = require("../../models/Notifications");
 const router = express.Router();
+
+const moment = require("moment");
 
 router.get("/", auth, async (req, res) => {
   try {
@@ -134,6 +137,18 @@ router.put("/student", auth, async (req, res) => {
         },
       }
     );
+
+    const newNotification = new Notifications({
+      userId: userId,
+      message: `User ${user.firstName} ${user.lastName} enrolled in ${group.groupName} group`,
+      userName: `${user.firstName} ${user.lastName}`,
+      time: moment(new Date()).format("DD/MM/YYYY hh:mm"),
+      whatsApp: user.whatsApp,
+      phone: user.phone,
+      course: course.name,
+    });
+
+    await Notifications.insertMany(newNotification);
 
     return res.status(200).send({
       message:

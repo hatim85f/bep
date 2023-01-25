@@ -5,6 +5,8 @@ const bcrypt = require("bcryptjs");
 const auth = require("../../middleware/auth");
 const moment = require("moment");
 
+const Notifications = require("../../models/Notifications");
+
 // getting user data for his own purpose
 router.get("/", async (req, res) => {
   try {
@@ -106,6 +108,16 @@ router.post("/", async (req, res) => {
     });
 
     await User.insertMany(newUser);
+
+    const newNotification = new Notifications({
+      userName: `${userDetails.firstName} ${userDetails.lastName}`,
+      time: moment(new Date()).format("DD/MM/YYYY hh:mm"),
+      message: "New user had registered through Website",
+      whatsApp: userDetails.whatsApp,
+      phone: userDetails.phone,
+    });
+
+    await Notifications.insertMany(newNotification);
 
     return res.status(200).send({ message: "Your data added Successfully" });
   } catch (err) {

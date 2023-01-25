@@ -6,6 +6,7 @@ import { coursesReducer } from "./courses/coursesReducer";
 import { groupsReducer } from "./groups/groupsReducer";
 import { helpersReducer } from "./helpers/helpersReducer";
 import { homeReducer } from "./homeData/homeReducer";
+import { notificationsReducer } from "./notifications/notificationsReducer";
 import { paymentsReducer } from "./payments/paymentsReducer";
 import { usersReducer } from "./users/usersReducer";
 
@@ -20,6 +21,7 @@ const store = configureStore({
     payments: paymentsReducer,
     home: homeReducer,
     about: aboutReducer,
+    notifications: notificationsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ immutableCheck: false }),
