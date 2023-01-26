@@ -115,6 +115,7 @@ router.post("/", async (req, res) => {
       message: "New user had registered through Website",
       whatsApp: userDetails.whatsApp,
       phone: userDetails.phone,
+      type: "New User",
     });
 
     await Notifications.insertMany(newNotification);

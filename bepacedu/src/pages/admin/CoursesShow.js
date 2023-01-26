@@ -90,7 +90,8 @@ const CoursesShow = () => {
       notificationsActions.addNotifications(
         _id,
         course._id,
-        `User ${firstName} ${lastName} is asking to enroll in ${course.name}`
+        `User ${firstName} ${lastName} is asking to enroll in ${course.name}`,
+        "Request to Enroll new Course"
       )
     );
     setOpenModal(false);

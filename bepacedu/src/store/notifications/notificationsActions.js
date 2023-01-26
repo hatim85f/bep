@@ -2,6 +2,7 @@ import { ERROR } from "../auth/authActions";
 import { mainLink } from "../link";
 
 export const GET_NOTIFICATIONS = "ADD_NOTIFICATIONS";
+export const OPEN_NOTIFICATION = "OPEN_NOTIFICATION";
 
 export const getNotifications = () => {
   return async (dispatch, getState) => {
@@ -24,7 +25,7 @@ export const getNotifications = () => {
   };
 };
 
-export const addNotifications = (userId, courseId, message) => {
+export const addNotifications = (userId, courseId, message, type) => {
   return async (dispatch, getState) => {
     const { token } = getState().auth;
 
@@ -34,7 +35,7 @@ export const addNotifications = (userId, courseId, message) => {
         "Content-Type": "application/json",
         "x-auth-token": token,
       },
-      body: JSON.stringify({ userId, courseId, message }),
+      body: JSON.stringify({ userId, courseId, message, type }),
     });
 
     const resData = await response.json();
@@ -52,5 +53,27 @@ export const addNotifications = (userId, courseId, message) => {
         message: resData.message,
       });
     }
+  };
+};
+
+export const openNotification = (notificationId) => {
+  return async (dispatch, getState) => {
+    const { token } = getState().auth;
+
+    console.log(token);
+
+    await fetch(`${mainLink}/api/notifications/isOpened`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": token,
+      },
+      body: JSON.stringify({ notificationId }),
+    });
+
+    dispatch({
+      type: OPEN_NOTIFICATION,
+      notificationId: notificationId,
+    });
   };
 };

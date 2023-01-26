@@ -51,4 +51,18 @@ router.post("/", auth, async (req, res) => {
   }
 });
 
+router.put("/isOpened", auth, async (req, res) => {
+  const { notificationId } = req.body;
+
+  try {
+    await Notifications.updateMany(
+      { _id: notificationId },
+      { $set: { isOpened: true } }
+    );
+    return res.status(200).send({ message: "Opened" });
+  } catch (error) {
+    return res.status(500).send({ error: "Error", message: error.message });
+  }
+});
+
 module.exports = router;

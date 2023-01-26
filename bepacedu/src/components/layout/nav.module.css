@@ -58,7 +58,7 @@
 }
 
 .buttonsContainer {
-  width: calc(65vw - 9.4vw);
+  width: calc(70vw - 9.4vw);
   height: 4rem;
   display: flex;
   flex-direction: row;
@@ -113,7 +113,14 @@
   -moz-box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
 }
 
+.header,
 .container strong,
 .activeContainer strong {
   font-size: 0.9vw;
+}
+
+.input {
+  outline: none;
+  border: none;
+  cursor: pointer;
 }

@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./dashboard.module.css";
 
 import * as authActions from "../../store/auth/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import notifications from "../../assets/notification.png";
+import notificationsLogo from "../../assets/notification.png";
 import customers from "../../assets/customers.png";
 import payment from "../../assets/payment.png";
 import certificate from "../../assets/certificate.png";
@@ -16,25 +16,44 @@ import article from "../../assets/article.png";
 import home from "../../assets/home.png";
 import aboutUs from "../../assets/aboutUs.png";
 
+import Badge from "@mui/material/Badge";
+
 import ItemCard from "./ItemCard";
-import ModifyHome from "./modifyHome/ModifyHome";
+
+import * as notificationsActions from "../../store/notifications/notificationsActions";
 
 const Dashboard = () => {
   const { token, firstName, lastName, adminType, userEmail, isAdmin } =
     useSelector((state) => state.auth);
+  const { notifications } = useSelector((state) => state.notifications);
+
+  const [notificationsLength, setNotificationsLength] = useState(0);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logOut = () => {
     dispatch(authActions.logOut());
   };
-
-  console.log(isAdmin);
-
   useEffect(() => {
     if (!token) {
       navigate("/auth");
     }
   }, [navigate, token]);
+
+  useEffect(() => {
+    dispatch(notificationsActions.getNotifications());
+  }, [dispatch]);
+
+  useEffect(() => {
+    const unOpened =
+      notifications &&
+      notifications.length > 0 &&
+      notifications.filter((a) => a.isOpened === false);
+
+    if (unOpened && unOpened.length > 0) {
+      setNotificationsLength(unOpened.length);
+    }
+  }, [notifications]);
 
   return (
     <div className={classes.mainCotainer}>
@@ -94,9 +113,19 @@ const Dashboard = () => {
           />
           <ItemCard
             title="Notifications"
-            image={notifications}
-            onClick={() => {}}
+            image={notificationsLogo}
+            onClick={() =>
+              navigate("/admin/notifications", { state: { notifications } })
+            }
             color="#c2dbdc"
+            showBadge
+            number={
+              notificationsLength > 99
+                ? "99+"
+                : notificationsLength > 999
+                ? "999+"
+                : notificationsLength
+            }
           />
           {adminType === "Main" && (
             <ItemCard
@@ -125,7 +154,7 @@ const Dashboard = () => {
             <ItemCard
               title="Articles"
               image={article}
-              onClick={() => {}}
+              onClick={() => navigate("/admin/articles")}
               color="#93b7be"
             />
           )}

@@ -31,10 +31,8 @@ const HomePage = () => {
       const userDetails = window.localStorage.getItem("userDetails");
       const userData = JSON.parse(userDetails);
 
-      if (userData.user) {
+      if (userData) {
         dispatch(authActions.getUserBack(userData.user, userData.token));
-      } else {
-        navigate("/auth");
       }
     }
   }, [token, dispatch, navigate]);

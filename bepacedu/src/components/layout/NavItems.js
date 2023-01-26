@@ -9,6 +9,8 @@ const NavItems = () => {
     dispatch(authActions.logOut());
   };
 
+  const { isAdmin } = useSelector((state) => state.auth);
+
   return (
     <div className={classes.buttonsContainer}>
       <NavLink
@@ -19,6 +21,16 @@ const NavItems = () => {
       >
         <strong>Home</strong>
       </NavLink>
+      {isAdmin && (
+        <NavLink
+          className={(navData) =>
+            navData.isActive ? classes.activeContainer : classes.container
+          }
+          to="/dashboard"
+        >
+          <strong>Dashboard</strong>
+        </NavLink>
+      )}
       <NavLink
         className={(navData) =>
           navData.isActive ? classes.activeContainer : classes.container

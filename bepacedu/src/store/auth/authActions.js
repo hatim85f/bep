@@ -52,8 +52,6 @@ export const newUser = (userDetails) => {
 
     const resData = await response.json();
 
-    console.log(resData);
-
     if (!response.ok) {
       dispatch({
         type: ERROR,
@@ -81,8 +79,6 @@ export const login = (email, password) => {
     });
 
     const resData = await response.json();
-
-    console.log(resData, "resData");
 
     const { user, token } = resData;
 

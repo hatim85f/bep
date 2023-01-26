@@ -146,6 +146,7 @@ router.put("/student", auth, async (req, res) => {
       whatsApp: user.whatsApp,
       phone: user.phone,
       course: course.name,
+      type: "Enroll to a course",
     });
 
     await Notifications.insertMany(newNotification);

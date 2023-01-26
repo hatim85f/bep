@@ -25,6 +25,14 @@ const NotificationSchema = Schema({
   userName: {
     type: String,
   },
+  isOpened: {
+    type: Boolean,
+    default: false,
+  },
+  type: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = Notification = mongoose.model(
