@@ -22,6 +22,7 @@ const Articles = () => {
   const [category, setCategory] = useState("");
   const [headLine, setHeadLine] = useState("");
   const [mainImage, setMainImage] = useState("");
+  const [description, setDescription] = useState("");
   const [articleBody, setArticleBody] = useState([
     {
       title: "",
@@ -97,6 +98,7 @@ const Articles = () => {
   const submit = () => {
     const article = {
       category,
+      description,
       headLine,
       mainImage,
       articleBody,
@@ -104,6 +106,7 @@ const Articles = () => {
     dispatch(articlesActions.addArticle(article));
 
     setCategory("");
+    setDescription("");
     setHeadLine("");
     setMainImage("");
     setArticleBody({
@@ -130,11 +133,15 @@ const Articles = () => {
     <div className={classes.container}>
       <div className={classes.innerContainer}>
         <Selective
-          options={["Pharma News", "Pharma Insights", "Article"]}
+          options={["Pharma News", "Pharma Insights", "Articles"]}
           title="Category"
           onChange={(e) => setCategory(e)}
         />
         <Input title="Title" onChange={(e) => setHeadLine(e.target.value)} />
+        <TextArea
+          title="Article Description"
+          onChange={(e) => setDescription(e.target.value)}
+        />
         <UploadImage
           title="Article Image"
           path={`articles/${headLine}/mainImage`}

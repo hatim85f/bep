@@ -1,4 +1,9 @@
-import { ADD_ARTICLE, GET_ARTICLES } from "./articlesActions";
+import {
+  ADD_ARTICLE,
+  ADD_COMMENT,
+  ADD_LIKE,
+  GET_ARTICLES,
+} from "./articlesActions";
 
 const initialState = {
   articles: [],
@@ -17,6 +22,34 @@ export const articlesReducer = (state = initialState, action) => {
       return {
         ...state,
         articles: allArticles,
+      };
+    case ADD_LIKE:
+      const newArticles = state.articles;
+      const articleIndex = newArticles.findIndex(
+        (a) => a._id === action.articleId
+      );
+      const likes = newArticles[articleIndex].likes;
+      likes.push({
+        userId: action.userId,
+      });
+      return {
+        ...state,
+        articles: newArticles,
+      };
+    case ADD_COMMENT:
+      const neededArticles = state.articles;
+      const neededIndex = neededArticles.findIndex(
+        (a) => a._id === action.articleId
+      );
+      const comments = neededArticles[neededIndex].comments;
+      comments.push({
+        userId: action.userId,
+        userName: action.userName,
+        comment: action.comment,
+      });
+      return {
+        ...state,
+        articles: neededArticles,
       };
     default:
       return state;

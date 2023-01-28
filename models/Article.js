@@ -13,6 +13,10 @@ const ArticleSchema = Schema({
   mainImage: {
     type: String,
   },
+  description: {
+    type: String,
+    required: true,
+  },
   articleBody: [
     {
       title: {
@@ -71,6 +75,9 @@ const ArticleSchema = Schema({
       userId: {
         type: mongoose.Types.ObjectId,
         ref: "user",
+      },
+      userName: {
+        type: String,
       },
     },
   ],

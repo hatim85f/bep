@@ -24,6 +24,7 @@ router.post("/", auth, async (req, res) => {
 
     const newArticle = new Article({
       category: article.category,
+      description: article.description,
       headLine: article.headLine,
       mainImage: article.mainImage,
       articleBody: article.articleBody,
@@ -52,6 +53,7 @@ router.put("/", auth, async (req, res) => {
         $set: {
           category: article.category,
           headLine: article.headLine,
+          description: article.description,
           mainImage: article.mainImage,
           articleBody: article.articleBody,
           by: admin._id,
@@ -98,7 +100,35 @@ router.put("/comments", auth, async (req, res) => {
       }
     );
 
-    return res.status(200).send({ message: "Comment Added" });
+    return res.status(200).send({ message: "Comment Added Successfully" });
+  } catch (error) {
+    return res.status(500).send({ error: "Error", message: error.message });
+  }
+});
+
+router.put("/person_like", async (req, res) => {
+  const { articleId, userId, commentIndex } = req.body;
+  try {
+    const user = await User.findOne({ _id: userId });
+    const article = await Article.findOne({ _id: articleId });
+    const articleComments = article.comments;
+    let newComments = articleComments;
+
+    newComments[commentIndex].likes.push({
+      userId,
+      userName: `${user.firstName} ${user.lastName}`,
+    });
+
+    await Article.updateMany(
+      { _id: article },
+      {
+        $set: {
+          comments: newComments,
+        },
+      }
+    );
+
+    return res.status(200).send({ message: "Done" });
   } catch (error) {
     return res.status(500).send({ error: "Error", message: error.message });
   }

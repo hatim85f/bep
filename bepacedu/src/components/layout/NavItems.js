@@ -1,5 +1,5 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import classes from "./nav.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import * as authActions from "../../store/auth/authActions";
@@ -9,7 +9,15 @@ const NavItems = () => {
     dispatch(authActions.logOut());
   };
 
+  const [showItems, setShowItems] = useState(false);
+
   const { isAdmin } = useSelector((state) => state.auth);
+
+  const options = ["Pharma News", "Pharma Insights", "Articles"];
+
+  const pathName = useLocation().pathname;
+
+  const navigate = useNavigate();
 
   return (
     <div className={classes.buttonsContainer}>
@@ -47,14 +55,33 @@ const NavItems = () => {
       >
         <strong>Programs</strong>
       </NavLink>
-      <NavLink
-        className={(navData) =>
-          navData.isActive ? classes.activeContainer : classes.container
+
+      <div
+        className={
+          pathName === "/publication"
+            ? classes.activeDivContainer
+            : classes.divContainer
         }
-        to="/#"
+        onMouseMove={() => setShowItems(true)}
+        onMouseLeave={() => setShowItems(false)}
+        onClick={() => setShowItems(false)}
       >
         <strong>Publication</strong>
-      </NavLink>
+        <div className={showItems ? classes.showItems : classes.hideItem}>
+          {options.map((a, i) => {
+            return (
+              <strong
+                onClick={() => navigate("/publication", { state: a })}
+                key={i}
+              >
+                {" "}
+                {a}{" "}
+              </strong>
+            );
+          })}
+        </div>
+      </div>
+
       <NavLink
         className={(navData) =>
           navData.isActive ? classes.activeContainer : classes.container

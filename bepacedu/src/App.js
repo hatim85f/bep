@@ -21,6 +21,8 @@ import CompanyPortfolio from "./pages/admin/CompanyPortfolio";
 import UserProgram from "./pages/programs/UserProgram";
 import Notifications from "./pages/admin/notifications/Notifications";
 import Articles from "./pages/admin/articles/Articles";
+import UserArticles from "./pages/publication/UserArticles";
+import ShowArticle from "./pages/publication/ShowArticle";
 
 function App() {
   return (
@@ -47,6 +49,8 @@ function App() {
       <Route path="/our_programs" element={<UserProgram />} />
       <Route path="/admin/notifications" element={<Notifications />} />
       <Route path="/admin/articles" element={<Articles />} />
+      <Route path="/publication" element={<UserArticles />} />
+      <Route path="publication/show_article" element={<ShowArticle />} />
     </Routes>
   );
 }

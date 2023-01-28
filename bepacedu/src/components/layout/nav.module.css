@@ -68,6 +68,7 @@
   margin-top: 2vw;
 }
 
+.divContainer,
 .container {
   height: 1.8rem;
   display: flex;
@@ -87,6 +88,7 @@
   transform: translateY(4px);
 }
 
+.activeDivContainer,
 .activeContainer {
   height: 3rem;
   display: flex;
@@ -103,6 +105,10 @@
   margin-left: 0.5vw;
   margin-right: 0.5vw;
   padding: 0 0.5vw;
+}
+
+.activeDivContainer {
+  cursor: pointer;
 }
 
 .container:hover {
@@ -123,4 +129,27 @@
   outline: none;
   border: none;
   cursor: pointer;
+}
+
+.hideItem,
+.showItems {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  position: absolute;
+  top: 5vw;
+  background: rgba(225, 229, 234, 0.8);
+  border-radius: 8px;
+  width: 12vw;
+  line-height: 3rem;
+  color: var(--secondary-color);
+  transform: scale(1);
+  transform-origin: top;
+  transition: all 1s;
+}
+
+.hideItem {
+  transform: scale(0);
 }
