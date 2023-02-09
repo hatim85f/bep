@@ -86,23 +86,16 @@ const NavItems = () => {
         className={(navData) =>
           navData.isActive ? classes.activeContainer : classes.container
         }
-        to="/#"
+        to="/events"
       >
         <strong>Our Work Events</strong>
       </NavLink>
+
       <NavLink
         className={(navData) =>
           navData.isActive ? classes.activeContainer : classes.container
         }
-        to="/#"
-      >
-        <strong>Online Study</strong>
-      </NavLink>
-      <NavLink
-        className={(navData) =>
-          navData.isActive ? classes.activeContainer : classes.container
-        }
-        to="/#"
+        to="/contact_us"
       >
         <strong>Contact Us</strong>
       </NavLink>

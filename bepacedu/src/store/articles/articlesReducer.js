@@ -2,6 +2,7 @@ import {
   ADD_ARTICLE,
   ADD_COMMENT,
   ADD_LIKE,
+  DELETE_ARTICLE,
   GET_ARTICLES,
 } from "./articlesActions";
 
@@ -47,9 +48,17 @@ export const articlesReducer = (state = initialState, action) => {
         userName: action.userName,
         comment: action.comment,
       });
+
       return {
         ...state,
         articles: neededArticles,
+      };
+    case DELETE_ARTICLE:
+      const afterArticles = state.articles;
+      const needed = afterArticles.filter((a) => a._id !== action.articleId);
+      return {
+        ...state,
+        articles: needed,
       };
     default:
       return state;

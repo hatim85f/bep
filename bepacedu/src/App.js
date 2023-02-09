@@ -23,6 +23,10 @@ import Notifications from "./pages/admin/notifications/Notifications";
 import Articles from "./pages/admin/articles/Articles";
 import UserArticles from "./pages/publication/UserArticles";
 import ShowArticle from "./pages/publication/ShowArticle";
+import Events from "./pages/admin/Events";
+import ArticlesHitory from "./pages/admin/articles/ArticlesHitory";
+import UserEvents from "./pages/userEvents/UserEvents";
+import ContactPage from "./pages/contact/ContactPage";
 
 function App() {
   return (
@@ -49,8 +53,15 @@ function App() {
       <Route path="/our_programs" element={<UserProgram />} />
       <Route path="/admin/notifications" element={<Notifications />} />
       <Route path="/admin/articles" element={<Articles />} />
+      <Route path="admin/events" element={<Events />} />
+      <Route
+        path="/admin/articles/articles_history"
+        element={<ArticlesHitory />}
+      />
       <Route path="/publication" element={<UserArticles />} />
       <Route path="publication/show_article" element={<ShowArticle />} />
+      <Route path="/events" element={<UserEvents />} />
+      <Route path="/contact_us" element={<ContactPage />} />
     </Routes>
   );
 }

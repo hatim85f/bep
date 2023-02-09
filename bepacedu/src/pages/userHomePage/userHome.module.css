@@ -73,8 +73,8 @@
 }
 
 .card {
-  width: 320px;
-  height: 500px;
+  width: 16.5vw;
+  height: 52vh;
   border-radius: 25px;
   background: #fff;
 }
@@ -109,9 +109,9 @@
   content: "";
   position: absolute;
   right: 0;
-  bottom: -40px;
-  height: 40px;
-  width: 40px;
+  bottom: -2.1vw;
+  height: 2.1vw;
+  width: 2.1vw;
   background-color: #4070f4;
 }
 
@@ -137,7 +137,7 @@
 }
 
 .name {
-  font-size: 18px;
+  font-size: 0.9vw;
   color: #333;
   font-family: "Poppins", sans-serif;
   text-align: center;
@@ -145,18 +145,18 @@
 }
 
 .description {
-  font-size: 14px;
+  font-size: 0.75vw;
   color: #707070;
   text-align: center;
 }
 
 .button {
   border: none;
-  font-size: 16px;
-  padding: 8px 16px;
-  border-radius: 6px;
+  font-size: 0.9vw;
+  padding: 0.45vw 0.9vw;
+  border-radius: 0.35vw;
   background: #4070f4;
-  margin: 14px;
+  margin: 0.75vw;
   cursor: pointer;
   transition: all 0.3s ease;
 }

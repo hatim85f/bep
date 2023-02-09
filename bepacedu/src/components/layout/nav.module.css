@@ -119,10 +119,12 @@
   -moz-box-shadow: -1px 6px 9px -5px rgba(0, 0, 0, 0.75);
 }
 
+.activeDivContainer strong,
+.divContainer strong,
 .header,
 .container strong,
 .activeContainer strong {
-  font-size: 0.9vw;
+  font-size: 0.7vw;
 }
 
 .input {

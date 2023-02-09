@@ -1,0 +1,66 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  margin-top: 1vw;
+  width: 15vw;
+  height: 2.2vw;
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--green-color);
+  color: #fff;
+  outline: none;
+  border: none;
+  font-size: 1.1vw;
+}
+
+.button:active {
+  box-shadow: 0 0px #666;
+  transform: translateY(4px);
+}
+
+.button:disabled {
+  background-color: #666;
+  cursor: auto;
+}
+
+.openModal,
+.closeModal {
+  height: 70vh;
+  width: 40vw;
+  position: absolute;
+  background: #fff;
+  top: 10vw;
+  border-radius: 8px;
+  border: var(--primary-color) solid 2.5px;
+  box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  transform: scale(1);
+  transition: all 1.5s;
+  padding: 15px;
+}
+
+.closeModal {
+  transform: scale(0);
+  transition: all 1.5s;
+}
+
+.icon {
+  color: red;
+  font-size: 1.4vw;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}

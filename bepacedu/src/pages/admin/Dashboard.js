@@ -15,8 +15,7 @@ import support from "../../assets/support.png";
 import article from "../../assets/article.png";
 import home from "../../assets/home.png";
 import aboutUs from "../../assets/aboutUs.png";
-
-import Badge from "@mui/material/Badge";
+import event from "../../assets/event.png";
 
 import ItemCard from "./ItemCard";
 
@@ -158,6 +157,16 @@ const Dashboard = () => {
               color="#93b7be"
             />
           )}
+          <ItemCard
+            title="Events"
+            image={event}
+            onClick={() =>
+              navigate("/admin/events", {
+                state: { color: "#c2dbdc" },
+              })
+            }
+            color="#c2dbdc"
+          />
         </div>
         <button className={classes.logOut} onClick={logOut}>
           Logout

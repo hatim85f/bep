@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Asap+Condensed&family=Carter+One&family=Rubik+Gemstones&family=Sevillana&display=swap");
+
 .container {
   display: flex;
   flex-direction: column;
@@ -109,4 +111,69 @@
 
 .submit:disabled {
   background: #6a6b6c;
+}
+
+.buttonContainer {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2vw;
+}
+
+.mainRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 95vw;
+}
+
+.articleCard {
+  width: 30vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.5vw;
+  box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  border: var(--primary-color) solid 1.5px;
+  border-radius: 8px;
+  height: 75vh;
+  background: rgba(235, 235, 229, 0.8);
+  overflow: scroll;
+}
+
+.articleCard strong {
+  color: var(--primary-color);
+  font-size: 1.2vw;
+  font-family: "Carter One", cursive;
+  margin-top: 1vw;
+}
+
+.smallRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 95%;
+  border-bottom: var(--secondary-color) solid 1.5px;
+  padding: 1vw 0;
+}
+
+.smallRow address {
+  font-size: 1vw;
+  text-decoration: underline;
+  width: 90%;
+}
+
+.icon {
+  color: red;
+  font-size: 2vw;
+  cursor: pointer;
+}
+
+.icon:active {
+  box-shadow: 0 0px #666;
+  transform: translateY(4px);
 }

@@ -131,6 +131,14 @@ const Articles = () => {
 
   return (
     <div className={classes.container}>
+      <div className={classes.buttonContainer}>
+        <button
+          className={classes.submit}
+          onClick={() => navigate("/admin/articles/articles_history")}
+        >
+          Previous Articles
+        </button>
+      </div>
       <div className={classes.innerContainer}>
         <Selective
           options={["Pharma News", "Pharma Insights", "Articles"]}

@@ -1,0 +1,59 @@
+.eventTable {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.eventsContainer {
+  width: 48vw;
+  border: var(--primary-color) solid 1.5px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.5vw;
+  box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  background: rgba(235, 235, 229, 0.8);
+}
+
+.eventImage {
+  height: auto;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1vw;
+  padding-bottom: 1vw;
+}
+
+.eventTable {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.eventTable td,
+.eventTable th {
+  border: none;
+  outline: none;
+  background: transparent;
+  justify-content: center;
+  align-items: center;
+  border: var(--primary-color) solid 1px;
+}

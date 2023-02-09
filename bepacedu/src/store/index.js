@@ -4,6 +4,8 @@ import { adminReducer } from "./admin/adminReducers";
 import { articlesReducer } from "./articles/articlesReducer";
 import { authReducer } from "./auth/authReducer";
 import { coursesReducer } from "./courses/coursesReducer";
+import { eventsReducer } from "./events/eventsReducer";
+import { formsReducer } from "./forms/formsReducser";
 import { groupsReducer } from "./groups/groupsReducer";
 import { helpersReducer } from "./helpers/helpersReducer";
 import { homeReducer } from "./homeData/homeReducer";
@@ -24,6 +26,8 @@ const store = configureStore({
     about: aboutReducer,
     notifications: notificationsReducer,
     articles: articlesReducer,
+    events: eventsReducer,
+    forms: formsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ immutableCheck: false }),
