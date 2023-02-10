@@ -17,14 +17,11 @@ const ContactPage = () => {
             <ImLocation2 className={classes.icon} />
           </div>
           <iframe
-            marginheight="0"
-            marginwidth="0"
             src="https://maps.google.com/maps?q=Mustafa%20Elnhas%20St%20Nasr%20City&amp;t=m&amp;z=13&amp;output=embed&amp;iwloc=near"
             title="Mustafa Elnhas St Nasr City"
             aria-label="Mustafa Elnhas St Nasr City"
             data-rocket-lazyload="fitvidscompatible"
             data-lazy-src="https://maps.google.com/maps?q=Mustafa%20Elnhas%20St%20Nasr%20City&amp;t=m&amp;z=13&amp;output=embed&amp;iwloc=near"
-            class="lazyloaded"
             data-was-processed="true"
             className={classes.map}
           ></iframe>

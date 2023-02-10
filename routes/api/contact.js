@@ -54,10 +54,11 @@ router.post("/comment", async (req, res) => {
       website,
       comment,
     });
-    await Form.insertMany(newComment);
+    await Comment.insertMany(newComment);
 
     return res.status(200).send({
-      message: "Thank you for reaching us",
+      message:
+        "Thank you for reaching us, your comments are valuable and will be taken in consideration",
     });
   } catch (error) {
     return res.status(500).send({ error: "Error !", message: error.message });

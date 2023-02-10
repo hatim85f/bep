@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import classes from "./forms.module.css";
 
 import * as formsActions from "../../store/forms/formsActions";
+import * as authActions from "../../store/auth/authActions";
 
 import Input from "../input/Input";
 import TextArea from "../input/TextArea";
@@ -11,12 +12,18 @@ import { MdDriveFileRenameOutline } from "react-icons/md";
 import { SiMaildotru } from "react-icons/si";
 import { GiEarthAfricaEurope } from "react-icons/gi";
 
+import { useDispatch, useSelector } from "react-redux";
+
+import ErrorModal from "../../components/error/ErrorModal";
+
 const Contact = () => {
   const [name, setName] = useState("");
   const [mail, setMail] = useState("");
   const [website, setWebsite] = useState("");
   const [comment, setComment] = useState("");
   const [mailError, setMailError] = useState("");
+
+  const { error, errorMessage } = useSelector((state) => state.auth);
 
   const checkMail = (e) => {
     if (!e.includes("@")) {
@@ -27,7 +34,31 @@ const Contact = () => {
     }
   };
 
-  const submit = () => {};
+  const dispatch = useDispatch();
+
+  const submit = () => {
+    dispatch(formsActions.addComment(name, mail, website, comment));
+    setName("");
+    setMail("");
+    setWebsite("");
+    setComment("");
+  };
+
+  const clearError = () => {
+    dispatch(authActions.clearError());
+    setName("");
+    setMail("");
+    setWebsite("");
+    setComment("");
+  };
+
+  console.log(error, errorMessage);
+
+  if (error) {
+    return (
+      <ErrorModal title={error} message={errorMessage} onConfirm={clearError} />
+    );
+  }
 
   return (
     <div className={classes.formContainer}>

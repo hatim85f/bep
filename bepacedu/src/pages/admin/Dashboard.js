@@ -16,6 +16,7 @@ import article from "../../assets/article.png";
 import home from "../../assets/home.png";
 import aboutUs from "../../assets/aboutUs.png";
 import event from "../../assets/event.png";
+import forms from "../../assets/forms.png";
 
 import ItemCard from "./ItemCard";
 
@@ -166,6 +167,12 @@ const Dashboard = () => {
               })
             }
             color="#c2dbdc"
+          />
+          <ItemCard
+            title="Forms"
+            image={forms}
+            onClick={() => navigate("/admin/forms")}
+            color="#93b7be"
           />
         </div>
         <button className={classes.logOut} onClick={logOut}>

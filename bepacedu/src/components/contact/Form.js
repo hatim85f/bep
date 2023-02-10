@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import classes from "./forms.module.css";
 
 import * as formsActions from "../../store/forms/formsActions";
+import * as authActions from "../../store/auth/authActions";
 
 import Input from "../input/Input";
 import TextArea from "../input/TextArea";
@@ -12,6 +13,9 @@ import { BiMobileAlt } from "react-icons/bi";
 import { SiMaildotru } from "react-icons/si";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { AiOutlineMessage } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+
+import ErrorModal from "../../components/error/ErrorModal";
 
 const Form = () => {
   const [name, setName] = useState("");
@@ -20,6 +24,8 @@ const Form = () => {
   const [whatsApp, setWhatsApp] = useState("");
   const [message, setMessage] = useState("");
   const [mailError, setMailError] = useState("");
+
+  const { error, errorMessage } = useSelector((state) => state.auth);
 
   const checkMail = (e) => {
     if (!e.includes("@")) {
@@ -30,7 +36,34 @@ const Form = () => {
     }
   };
 
-  const submit = () => {};
+  const dispatch = useDispatch();
+
+  const submit = () => {
+    dispatch(formsActions.addForm(name, mail, mobile, whatsApp, message));
+    setName("");
+    setMail("");
+    setMobile("");
+    setWhatsApp("");
+    setMessage("");
+  };
+
+  const clearError = () => {
+    dispatch(authActions.clearError());
+    setName("");
+    setMail("");
+    setMobile("");
+    setWhatsApp("");
+    setMessage("");
+  };
+
+  console.log(error, errorMessage);
+
+  if (error) {
+    return (
+      <ErrorModal title={error} message={errorMessage} onConfirm={clearError} />
+    );
+  }
+
   return (
     <div className={classes.formContainer}>
       <h3>Contact Form</h3>
@@ -49,13 +82,18 @@ const Form = () => {
         </div>
         {mailError.length > 0 && <p className={classes.error}> {mailError} </p>}
         <div className={classes.formRow}>
-          <Input title="Mobile" onChange={(e) => setMobile(e.target.value)} />
+          <Input
+            title="Mobile"
+            onChange={(e) => setMobile(e.target.value)}
+            placeholder="+201001234567"
+          />
           <BiMobileAlt className={classes.icon} />
         </div>
         <div className={classes.formRow}>
           <Input
             title="WhatsApp"
             onChange={(e) => setWhatsApp(e.target.value)}
+            placeholder="+201001234567"
           />
           <IoLogoWhatsapp className={classes.icon} />
         </div>

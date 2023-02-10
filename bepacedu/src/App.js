@@ -27,6 +27,7 @@ import Events from "./pages/admin/Events";
 import ArticlesHitory from "./pages/admin/articles/ArticlesHitory";
 import UserEvents from "./pages/userEvents/UserEvents";
 import ContactPage from "./pages/contact/ContactPage";
+import FormsShowPage from "./pages/admin/forms/FormsShowPage";
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
       <Route path="/admin/notifications" element={<Notifications />} />
       <Route path="/admin/articles" element={<Articles />} />
       <Route path="admin/events" element={<Events />} />
+      <Route path="/admin/forms" element={<FormsShowPage />} />
       <Route
         path="/admin/articles/articles_history"
         element={<ArticlesHitory />}
