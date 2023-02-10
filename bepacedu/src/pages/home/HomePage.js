@@ -69,7 +69,7 @@ const HomePage = () => {
         <strong> Your Way to Improve </strong>
       </div>
       <div className={move ? classes.sloganMoving : classes.slogan}>
-        <strong> All Pharma career in One Place </strong>
+        <strong> All Pharma career </strong>
         <strong className={classes.capital}> IN ONE PLACE </strong>
       </div>
     </div>
