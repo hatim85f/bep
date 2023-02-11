@@ -9,6 +9,8 @@ const NavItems = () => {
     dispatch(authActions.logOut());
   };
 
+  const { token } = useSelector((state) => state.auth);
+
   const [showItems, setShowItems] = useState(false);
 
   const { isAdmin } = useSelector((state) => state.auth);
@@ -99,9 +101,16 @@ const NavItems = () => {
       >
         <strong>Contact Us</strong>
       </NavLink>
-      <div className={classes.container} onClick={() => logout()}>
-        <strong>Logout</strong>
-      </div>
+      {token && (
+        <div className={classes.container} onClick={() => logout()}>
+          <strong>Logout</strong>
+        </div>
+      )}
+      {!token && (
+        <div className={classes.container} onClick={() => navigate("/auth")}>
+          <strong>Login</strong>
+        </div>
+      )}
     </div>
   );
 };
