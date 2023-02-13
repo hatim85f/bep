@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 import {
   getStorage,
@@ -8,7 +8,16 @@ import {
 } from "firebase/storage";
 import Input from "./Input";
 
-const UploadImage = ({ path, getImageURL, title }) => {
+import ProgressBar from "../progressBar/ProgressBar";
+
+const UploadImage = ({
+  path,
+  getImageURL,
+  title,
+  id,
+  className,
+  showProgress,
+}) => {
   const [imageURL, setImageURL] = useState("");
   const [progress, setProgress] = useState(0);
 
@@ -65,7 +74,17 @@ const UploadImage = ({ path, getImageURL, title }) => {
     );
   };
 
-  return <Input type="file" onChange={(e) => uploadImage(e)} title={title} />;
+  return (
+    <Fragment>
+      <Input
+        type="file"
+        onChange={(e) => uploadImage(e)}
+        title={title}
+        id={id ? id : ""}
+      />
+      {showProgress && <ProgressBar progress={progress} />}
+    </Fragment>
+  );
 };
 
 export default UploadImage;

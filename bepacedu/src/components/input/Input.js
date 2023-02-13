@@ -12,7 +12,7 @@ const Input = (props) => {
       <div className={classes.inputContainer}>
         <input
           id="inpt"
-          className={classes.input}
+          className={`${classes.input} ${props.className}`}
           onKeyDown={props.onEnded}
           onChange={(e) => props.onChange(e.target.value)}
           placeholder={props.placeholder}

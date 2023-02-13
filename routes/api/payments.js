@@ -85,15 +85,19 @@ router.get("/history", auth, async (req, res) => {
       },
     ]);
 
+    // return res.status(200).send({ history });
+
     const paymentHistory = history.map((a) => {
       return {
         _id: a._id,
         value: a.value,
         date: a.date,
         receipt: a.receipt,
-        userName: a.user[0].firstName + " " + a.user[0].lastName,
+        userName: a.user[0]
+          ? a.user[0].firstName + " " + a.user[0].lastName
+          : "",
         adminName: a.admin[0].firstName + " " + a.admin[0].lastName,
-        courseName: a.course[0].name,
+        courseName: a.course[0] ? a.course[0].name : "",
       };
     });
 

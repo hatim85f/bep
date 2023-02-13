@@ -35,7 +35,7 @@ const PaymentHistory = (props) => {
   };
 
   useEffect(() => {
-    const values = paymentHistory.map((a) => a.value);
+    const values = paymentHistory && paymentHistory.map((a) => a.value);
     const totalValues = values.reduce((a, b) => a + b, 0);
 
     setTotalValue(totalValues);

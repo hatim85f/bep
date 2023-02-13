@@ -79,11 +79,16 @@ const CoursesShow = () => {
   };
 
   const enrollToCourse = (group) => {
-    dispatch(groupsActions.enrollToGroup(group._id, _id, course._id));
+    dispatch(
+      groupsActions.enrollToGroup(
+        group._id,
+        _id,
+        course._id,
+        "New Enrollment for a program"
+      )
+    );
     setOpenModal(false);
   };
-
-  console.log({ token });
 
   const notifyEnroll = () => {
     dispatch(

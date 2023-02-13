@@ -20,8 +20,10 @@ import { countries } from "../../components/helpers/countries";
 import SearchableSelect from "../../components/input/SearchableSelect";
 
 import ErrorModal from "../../components/error/ErrorModal";
+import { useLocation } from "react-router-dom";
 
 const Registeration = () => {
+  const { editing, data } = useLocation().state;
   const { error, errorMessage } = useSelector((state) => state.auth);
   const [countriesNames, setCountriesNames] = useState([]);
   const [image, setImage] = useState(null);

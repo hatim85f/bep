@@ -21,7 +21,7 @@ router.get("/", auth, async (req, res) => {
 });
 
 router.post("/", auth, async (req, res) => {
-  const { userId, courseId, message } = req.body;
+  const { userId, courseId, message, type } = req.body;
 
   try {
     const user = await User.findOne({ _id: userId });
@@ -35,6 +35,7 @@ router.post("/", auth, async (req, res) => {
       whatsApp: user.whatsApp,
       phone: user.phone,
       userName: `${user.firstName} ${user.lastName}`,
+      type,
     });
 
     await Notifications.insertMany(newNotification);

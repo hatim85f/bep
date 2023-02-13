@@ -28,6 +28,8 @@ import ArticlesHitory from "./pages/admin/articles/ArticlesHitory";
 import UserEvents from "./pages/userEvents/UserEvents";
 import ContactPage from "./pages/contact/ContactPage";
 import FormsShowPage from "./pages/admin/forms/FormsShowPage";
+import UserProfile from "./pages/userPorfile/UserProfile";
+import Certificates from "./pages/admin/Certificates";
 
 function App() {
   return (
@@ -64,6 +66,8 @@ function App() {
       <Route path="publication/show_article" element={<ShowArticle />} />
       <Route path="/events" element={<UserEvents />} />
       <Route path="/contact_us" element={<ContactPage />} />
+      <Route path="/profile" element={<UserProfile />} />
+      <Route path="/admin/certificates" element={<Certificates />} />
     </Routes>
   );
 }

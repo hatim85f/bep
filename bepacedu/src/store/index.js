@@ -11,6 +11,7 @@ import { helpersReducer } from "./helpers/helpersReducer";
 import { homeReducer } from "./homeData/homeReducer";
 import { notificationsReducer } from "./notifications/notificationsReducer";
 import { paymentsReducer } from "./payments/paymentsReducer";
+import { userReducer } from "./user/userReducer";
 import { usersReducer } from "./users/usersReducer";
 
 const store = configureStore({
@@ -28,6 +29,7 @@ const store = configureStore({
     articles: articlesReducer,
     events: eventsReducer,
     forms: formsReducer,
+    profile: userReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ immutableCheck: false }),

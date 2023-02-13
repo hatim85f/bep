@@ -108,7 +108,7 @@ const Dashboard = () => {
           <ItemCard
             title="Certificates"
             image={certificate}
-            onClick={() => {}}
+            onClick={() => navigate("/admin/certificates")}
             color="#93b7be"
           />
           <ItemCard

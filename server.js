@@ -25,6 +25,7 @@ app.use("/api/notifications", require("./routes/api/notifications"));
 app.use("/api/article", require("./routes/api/article"));
 app.use("/api/events", require("./routes/api/event"));
 app.use("/api/contact", require("./routes/api/contact"));
+app.use("/api/profile", require("./routes/api/profile"));
 
 // serve static assets in production
 const PORT = process.env.PORT || 5000;

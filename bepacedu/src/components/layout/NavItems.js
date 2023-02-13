@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import * as authActions from "../../store/auth/authActions";
 const NavItems = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const logout = () => {
     dispatch(authActions.logOut());
+    navigate("/");
   };
 
   const { token } = useSelector((state) => state.auth);
@@ -19,8 +21,6 @@ const NavItems = () => {
 
   const pathName = useLocation().pathname;
 
-  const navigate = useNavigate();
-
   return (
     <div className={classes.buttonsContainer}>
       <NavLink
@@ -30,6 +30,14 @@ const NavItems = () => {
         to="/home"
       >
         <strong>Home</strong>
+      </NavLink>
+      <NavLink
+        className={(navData) =>
+          navData.isActive ? classes.activeContainer : classes.container
+        }
+        to="/profile"
+      >
+        <strong>Profile</strong>
       </NavLink>
       {isAdmin && (
         <NavLink
@@ -102,7 +110,7 @@ const NavItems = () => {
         <strong>Contact Us</strong>
       </NavLink>
       {token && (
-        <div className={classes.container} onClick={() => logout()}>
+        <div className={classes.container} onClick={logout}>
           <strong>Logout</strong>
         </div>
       )}

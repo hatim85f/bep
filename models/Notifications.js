@@ -31,7 +31,6 @@ const NotificationSchema = Schema({
   },
   type: {
     type: String,
-    required: true,
   },
 });
 

@@ -106,6 +106,17 @@ router.put("/student", auth, async (req, res) => {
       });
     }
 
+    const groupParticipants = group.participants;
+    const numberOfParticipants = groupParticipants.length;
+
+    const studentCode = `${course.abbreviation}${moment(new Date()).format(
+      "YY"
+    )}${moment(new Date()).format("MM")}${
+      parseInt(numberOfParticipants) + 1 < 10
+        ? `0${parseInt(numberOfParticipants) + 1}`
+        : parseInt(numberOfParticipants) + 1
+    }`;
+
     await Groups.updateMany(
       { _id: groupId },
       {
@@ -113,6 +124,7 @@ router.put("/student", auth, async (req, res) => {
           participants: {
             userId: userId,
             name: user.firstName + " " + user.lastName,
+            code: studentCode,
           },
         },
       }

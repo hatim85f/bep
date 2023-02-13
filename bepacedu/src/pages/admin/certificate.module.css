@@ -1,0 +1,110 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.innerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 98vw;
+}
+
+.section {
+  width: 32vw;
+  height: 80vh;
+  border: var(--primary-color) solid 1.5px;
+  border-radius: 8px;
+  box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+  background: rgb(189, 225, 240);
+  margin-top: 2vh;
+  overflow: scroll;
+}
+
+.groupData {
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+}
+
+.groupContainer {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: var(--secondary-color) solid 1.5px;
+  width: 90%;
+}
+
+.groupItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.itemName,
+.groupName {
+  color: var(--secondary-color);
+  text-align: center;
+  margin-top: 2vw;
+  font-size: 1.2vw;
+}
+
+.smallRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 0.75vw;
+  border-bottom: #000 solid 1.5px;
+  padding-bottom: 0.5vw;
+}
+
+.title {
+  font-weight: bold;
+  color: var(--primary-color);
+  font-size: 1.2vw;
+}
+
+.date {
+  font-weight: bold;
+  font-style: italic;
+  font-size: 1.2vw;
+}
+
+.nameContainer {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.submit:active,
+.nameContainer:active {
+  box-shadow: 0 0px #666;
+  transform: translateY(4px);
+}
+
+.studentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.itemName {
+  margin-bottom: 2vw;
+}
+
+.submit {
+  width: 40%;
+  margin-top: 2vw;
+  cursor: pointer;
+  background: var(--green-color);
+  outline: none;
+  border: none;
+  color: #fff;
+  height: 2rem;
+  border-radius: 8px;
+  font-size: 1.1vw;
+}

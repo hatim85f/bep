@@ -52,7 +52,7 @@ const UserHome = () => {
 
   useEffect(() => {
     if (!token) {
-      navigate("/auth");
+      navigate("/");
     }
   }, [navigate, token]);
 
