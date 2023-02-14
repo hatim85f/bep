@@ -21,7 +21,6 @@
 }
 
 .image {
-  width: 9.4vw;
   height: 6.4vw;
   cursor: pointer;
   margin-left: 2vw;
@@ -50,6 +49,8 @@
 .dataText {
   font-size: 1rem;
   text-align: center;
+  text-decoration: none;
+  color: #000;
 }
 
 .headerContent {
@@ -154,4 +155,90 @@
 
 .hideItem {
   transform: scale(0);
+}
+
+.menuOpened,
+.menu {
+  position: absolute;
+  top: 24vh;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  right: 1vh;
+  color: #fff;
+  transition: all 1.5s;
+}
+
+.menuOpened {
+  transform: translateX(-250px);
+  color: #000;
+  transition: all 1.5s;
+}
+
+.anchor {
+  text-decoration: none;
+}
+
+@media screen and (min-width: 800px) {
+  .menuOpened,
+  .menu {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .buttonsContainer {
+    display: none;
+  }
+
+  .menuOpened,
+  .menu {
+    top: 22vh;
+    margin-right: 20px;
+    color: #000;
+  }
+  .headerContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .data {
+    flex-direction: column;
+    width: 100vw;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .dataRow {
+    justify-content: flex-start;
+    padding-left: 15px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .dataText {
+    margin-left: 25px;
+  }
+
+  .mainHeader {
+    height: 4rem;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .menuOpened,
+  .menu {
+    top: 18vh;
+    color: #000;
+  }
+
+  .icon {
+    font-size: 14px;
+  }
+
+  .dataText {
+    font-size: 14px;
+  }
 }

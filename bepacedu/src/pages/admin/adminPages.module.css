@@ -49,7 +49,7 @@
   margin-top: 25px;
   display: flex;
   flex-direction: column;
-
+  background: #fff;
   line-height: 0.5rem;
 }
 

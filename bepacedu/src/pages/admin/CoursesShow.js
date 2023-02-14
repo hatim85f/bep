@@ -242,7 +242,12 @@ const CoursesShow = () => {
       </div>
       <div className={openModal ? classes.courseModal : classes.removeModal}>
         <div className={classes.closeDiv} onClick={() => setOpenModal(false)}>
-          <img src={close} className={classes.closeImg} alt="close" />
+          <img
+            src={close}
+            className={classes.closeImg}
+            alt="close"
+            onClick={() => setOpenModal(false)}
+          />
         </div>
         {groups && groups.length > 0 ? (
           <h2> Available Groups </h2>

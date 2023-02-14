@@ -211,3 +211,65 @@
   display: flex;
   justify-content: flex-end;
 }
+
+@media screen and (max-width: 425px) {
+  .container {
+    background: linear-gradient(
+      rgba(153, 162, 157, 0.65),
+      rgba(237, 235, 229, 0.65)
+    );
+    height: 100vh;
+  }
+
+  .itemContainer {
+    width: 90%;
+  }
+
+  .itemContainer h2 {
+    font-size: 18px;
+  }
+
+  .itemContainer small {
+    font-size: 10px;
+  }
+
+  .itemContainer address {
+    font-size: 10px;
+    margin-top: 5px;
+  }
+
+  .edit {
+    display: none;
+  }
+
+  .gender {
+    font-size: 18px;
+    margin-top: 10px;
+  }
+
+  .image {
+    height: 80px;
+  }
+
+  .linked,
+  .icon {
+    font-size: 16px;
+  }
+
+  .smallRow strong {
+    font-size: 14px;
+  }
+
+  .dataDetails strong,
+  .headerRow strong {
+    font-size: 12px;
+  }
+
+  .payItem {
+    font-size: 10px;
+  }
+
+  .cerName {
+    font-size: 12px;
+  }
+}

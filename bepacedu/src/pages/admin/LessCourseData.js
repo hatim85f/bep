@@ -61,6 +61,7 @@ const LessCourseData = (props) => {
             <MdDeleteSweep className={classes.icon} onClick={showAlert} />
           </div>
         )}
+
         <div className={classes.dataContainer}>
           <div className={classes.imageContainer}>
             <img src={course.image} className={classes.logoImage} alt="logo" />
@@ -70,6 +71,7 @@ const LessCourseData = (props) => {
             <h3> ({course.abbreviation}) </h3>
           </div>
         </div>
+
         <div className={classes.objectivesContainer}>
           <p className={classes.dataParagraph}>
             {course.learningObjective.title}

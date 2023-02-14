@@ -1,10 +1,12 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import classes from "./service.module.css";
 
 const ServiceDetails = () => {
   const service = useLocation().state;
+
+  const navigate = useNavigate()
 
   return (
     <div
@@ -44,7 +46,7 @@ const ServiceDetails = () => {
           </div>
           {!service.articleImage && !service.articlePoints.length > 0 && (
             <div className={classes.buttonContainer}>
-              <button className={classes.btn} onClick={() => {}}>
+              <button className={classes.btn} onClick={() => navigate('/contact_us')}>
                 Contact Us
               </button>
             </div>
@@ -61,7 +63,7 @@ const ServiceDetails = () => {
               <p> {service.articleDescription} </p>
             </div>
             <div className={classes.buttonContainer}>
-              <button className={classes.btn} onClick={() => {}}>
+              <button className={classes.btn} onClick={() => navigate('/contact_us')}>
                 Contact Us
               </button>
             </div>

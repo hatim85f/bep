@@ -56,7 +56,7 @@ const UserProgram = () => {
   };
 
   return (
-    <div>
+    <div className={classes.programs}>
       <div className={classes.filterContainer}>
         <div className={classes.searchContainer}>
           <div

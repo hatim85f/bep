@@ -33,7 +33,7 @@ const UserArticles = () => {
   return (
     <div className={classes.container}>
       <div className={classes.row}>
-        <div className={classes.rowItem}>
+        <div className={`${classes.rowItem} ${classes.leftDiv}`}>
           <div className={classes.upperContainer}>
             <img src={leftImage1} className={classes.upperImage} alt="title" />
           </div>

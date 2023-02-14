@@ -207,3 +207,237 @@
   width: 6vw;
   height: 6vw;
 }
+
+@media screen and (min-width: 300px) and (max-width: 450px) {
+  .mainContainer {
+    background: linear-gradient(
+      rgba(153, 162, 157, 0.65),
+      rgba(237, 235, 229, 0.65)
+    );
+  }
+
+  .container strong {
+    font-size: 22px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  .missionContainer {
+    padding: 10px;
+  }
+
+  .missionContainer p {
+    font-size: 18px;
+    text-align: justify;
+  }
+
+  .rowContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .item {
+    width: 95%;
+    margin-bottom: 2.5px;
+  }
+
+  .smallRow {
+    width: 35%;
+  }
+
+  .smallRow h2 {
+    font-size: 16px;
+  }
+
+  .imageContainer {
+    border: var(--primary-color) solid 1px;
+  }
+
+  .item p {
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .valueItem p {
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .founderRow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .rowItem {
+    width: 95%;
+    margin-bottom: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px;
+  }
+
+  .rowItem strong {
+    font-size: 18px;
+  }
+
+  .rowItem small {
+    font-size: 14px;
+  }
+
+  .points {
+    text-align: justify;
+    font-size: 16px;
+  }
+
+  .teamContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .teamItem {
+    width: 95%;
+    height: 100px;
+    align-items: center;
+  }
+
+  .profileContainer {
+    height: 50px;
+    width: 50px;
+  }
+
+  .smallImage {
+    height: 50px;
+    width: 50px;
+  }
+
+  .innerDiv {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 450px) and (max-width: 768px) {
+  .mainContainer {
+    background: linear-gradient(
+      rgba(153, 162, 157, 0.65),
+      rgba(237, 235, 229, 0.65)
+    );
+  }
+  .container strong {
+    font-size: 22px;
+    margin-top: 10vw;
+    margin-bottom: 10px;
+  }
+
+  .missionContainer {
+    padding: 10px;
+  }
+
+  .missionContainer p {
+    font-size: 18px;
+    text-align: justify;
+  }
+
+  .valuesContainer p {
+    font-size: 18px;
+    line-height: 10px;
+  }
+
+  .smallRow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .smallRow h2 {
+    font-size: 16px;
+  }
+
+  .logo {
+    height: 22px;
+    width: 24px;
+  }
+
+  .imageContainer {
+    border: var(--primary-color) solid 1px;
+  }
+
+  .item p {
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .valueItem {
+    list-style-type: none;
+  }
+
+  .valueItem p {
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .founderRow {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .rowItem {
+    width: 95%;
+    margin-bottom: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px;
+  }
+
+  .rowItem strong {
+    font-size: 18px;
+  }
+
+  .rowItem small {
+    font-size: 14px;
+  }
+
+  .points {
+    text-align: justify;
+    font-size: 16px;
+  }
+
+  /* .teamContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  } */
+
+  .teamItem {
+    width: 45%;
+    height: 100px;
+    align-items: center;
+  }
+
+  .profileContainer {
+    height: 50px;
+    width: 50px;
+  }
+
+  .smallImage {
+    height: 50px;
+    width: 50px;
+  }
+
+  .innerDiv {
+    width: 80%;
+  }
+}

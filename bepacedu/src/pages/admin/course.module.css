@@ -498,3 +498,148 @@
   font-size: 1.4rem;
   text-align: center;
 }
+
+.brochure a:visited {
+  color: var(--primary-color);
+}
+
+@media screen and (min-width: 300px) and (max-width: 500px) {
+  .internalDivContainer {
+    height: auto;
+  }
+
+  .cardContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: red;
+  }
+
+  .imageContainer {
+    margin-bottom: 30px;
+  }
+
+  .data strong {
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .data h3 {
+    font-size: 14px;
+  }
+
+  .dataParagraph {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .objectives li {
+    font-size: 14px;
+  }
+
+  .mainInternalData {
+    width: 90%;
+  }
+
+  .moduleTitle {
+    font-size: 16px;
+  }
+
+  .single li {
+    font-size: 14px;
+  }
+
+  .brochure h2 {
+    font-size: 18px;
+  }
+
+  .brochure a:visited {
+    color: var(--primary-color);
+  }
+
+  .participants h2 {
+    font-size: 17px;
+  }
+
+  .participants strong {
+    font-size: 14px;
+  }
+
+  .courseModal,
+  .removeModal {
+    width: 100%;
+    transform: translate(-30%, 50%);
+  }
+
+  .groupTable td {
+    font-size: 14px;
+  }
+
+  .enrollBtn {
+    width: 100%;
+  }
+
+  .note {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 530px) and (max-width: 768px) {
+  .imageContainer {
+    margin-bottom: 30px;
+  }
+
+  .data strong {
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .data h3 {
+    font-size: 14px;
+  }
+
+  .dataParagraph {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .objectives li {
+    font-size: 14px;
+  }
+
+  .mainInternalData {
+    width: 80%;
+  }
+
+  .moduleTitle {
+    font-size: 16px;
+  }
+  .single li {
+    font-size: 14px;
+  }
+
+  .brochure h2 {
+    font-size: 18px;
+  }
+
+  .brochure a:visited {
+    color: var(--primary-color);
+  }
+
+  .participants h2 {
+    font-size: 17px;
+  }
+
+  .participants strong {
+    font-size: 14px;
+  }
+
+  .courseModal,
+  .removeModal {
+    width: 100%;
+    transform: translate(-30%, 50%);
+  }
+}

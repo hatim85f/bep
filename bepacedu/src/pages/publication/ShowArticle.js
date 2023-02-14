@@ -36,8 +36,6 @@ const ShowArticle = () => {
     }
   }, [token, dispatch]);
 
-  console.log({ id: _id, token });
-
   useEffect(() => {
     const itemLikes = item.likes;
     const likesNumber = parseInt(itemLikes.length);
