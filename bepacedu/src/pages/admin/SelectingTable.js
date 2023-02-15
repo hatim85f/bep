@@ -92,7 +92,9 @@ const SelectingTable = (props) => {
   ];
 
   const submit = () => {
-    dispatch(groupsActions.editGroup(group._id, selectedUsers, group));
+    selectedUsers.map((s, i) => {
+      dispatch(groupsActions.editGroup(group._id, s, group, i));
+    });
     setSelectedUsers([]);
 
     closeModal();

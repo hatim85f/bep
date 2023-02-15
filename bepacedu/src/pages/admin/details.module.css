@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.closeImage {
+  height: 2.5vh;
+  cursor: pointer;
+}
+
+.tableContainer {
+  width: 100%;
+}
+
+.showTable {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.showTable th {
+  border-radius: 8px;
+  background: #4b6858;
+  color: #fff;
+}
+
+.showTable td {
+  border-radius: 8px;
+  border: #498c8a solid 1.5px;
+}
+
+.showTable tr {
+  background: transparent;
+}

@@ -30,6 +30,7 @@ import ContactPage from "./pages/contact/ContactPage";
 import FormsShowPage from "./pages/admin/forms/FormsShowPage";
 import UserProfile from "./pages/userPorfile/UserProfile";
 import Certificates from "./pages/admin/Certificates";
+import Details from "./pages/admin/Details";
 
 function App() {
   return (

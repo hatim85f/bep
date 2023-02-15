@@ -23,7 +23,7 @@ const NavItems = () => {
 
   return (
     <div className={classes.buttonsContainer}>
-      <NavLink
+      {/* <NavLink
         className={(navData) =>
           navData.isActive ? classes.activeContainer : classes.container
         }
@@ -38,7 +38,7 @@ const NavItems = () => {
         to="/profile"
       >
         <strong>Profile</strong>
-      </NavLink>
+      </NavLink> */}
       {isAdmin && (
         <NavLink
           className={(navData) =>
@@ -49,7 +49,7 @@ const NavItems = () => {
           <strong>Dashboard</strong>
         </NavLink>
       )}
-      <NavLink
+      {/* <NavLink
         className={(navData) =>
           navData.isActive ? classes.activeContainer : classes.container
         }
@@ -108,7 +108,7 @@ const NavItems = () => {
         to="/contact_us"
       >
         <strong>Contact Us</strong>
-      </NavLink>
+      </NavLink> */}
       {token && (
         <div className={classes.container} onClick={logout}>
           <strong>Logout</strong>

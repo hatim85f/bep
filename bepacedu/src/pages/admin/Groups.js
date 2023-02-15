@@ -11,6 +11,8 @@ import SelectingTable from "./SelectingTable";
 
 import session from "../../assets/session.png";
 import GroupSession from "./GroupSession";
+import note from "../../assets/note.png";
+import Details from "./Details";
 
 const Groups = () => {
   const { groups } = useSelector((state) => state.groups);
@@ -18,6 +20,7 @@ const Groups = () => {
   const [openModal, setOpenModal] = useState(false);
   const [group, setGroup] = useState([]);
   const [openGroup, setOpenGroup] = useState(false);
+  const [openDetails, setOpenDetails] = useState(false);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -31,6 +34,11 @@ const Groups = () => {
 
   const openSession = (group) => {
     setOpenGroup(true);
+    setGroup(group);
+  };
+
+  const openGroupDetails = (group) => {
+    setOpenDetails(true);
     setGroup(group);
   };
 
@@ -48,6 +56,7 @@ const Groups = () => {
                 <th>Participatns</th>
                 <th>Add Participatns</th>
                 <th>Open Session</th>
+                <th>Group Details</th>
               </tr>
             </thead>
             {groups && (
@@ -75,6 +84,13 @@ const Groups = () => {
                           alt="Open Session"
                         />
                       </td>
+                      <td onClick={() => openGroupDetails(g)}>
+                        <img
+                          src={note}
+                          className={classes.tableImage}
+                          alt="Open Session"
+                        />
+                      </td>
                     </tr>
                   );
                 })}
@@ -89,6 +105,13 @@ const Groups = () => {
       {groups && groups.length > 0 && (
         <div className={openGroup ? classes.courseModal : classes.removeModal}>
           <GroupSession group={group} closeModal={() => setOpenGroup(false)} />
+        </div>
+      )}
+      {groups && groups.length > 0 && (
+        <div
+          className={openDetails ? classes.courseModal : classes.removeModal}
+        >
+          <Details group={group} closeGroup={() => setOpenDetails(false)} />
         </div>
       )}
     </div>

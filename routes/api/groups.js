@@ -172,60 +172,140 @@ router.put("/student", auth, async (req, res) => {
   }
 });
 
-// adding participants to group data
+// adding participnats to group data by admin
 router.put("/students", auth, async (req, res) => {
-  const { students, groupId } = req.body;
+  const { students, groupId, index } = req.body;
 
   try {
     const group = await Groups.findOne({ _id: groupId });
 
     const groupParticipants = group.participants;
 
-    const difference = students.filter(
-      (a) => !groupParticipants.some((s) => a._id === s.userId.toString())
-    );
+    const startingDate = group.startingDate.split("/")[1];
+    const groupYear = group.startingDate.split("/")[2];
 
+    const isFound = groupParticipants.find((x) => x.userId === students._id);
+
+    if (isFound) {
+      return res.status(500).send({
+        error: "Dupliacte Data",
+        message: `Student ${students.name} is already registered in this group`,
+      });
+    }
     const courseData = await Courses.findOne({ _id: group.course });
 
-    for (let data in difference) {
-      await User.updateMany(
-        { _id: students[data]._id },
-        {
-          $addToSet: {
-            payments: {
-              courseId: group.course,
-              courseName: courseData.name,
-              requiredPayments: courseData.price,
-              isOffered: false,
-              offerPrice: 0,
-              status: "pending",
-              completed: false,
-            },
-            activeCourses: {
-              course: group.course,
-            },
-          },
-        }
-      );
+    const numberOfParticipants = groupParticipants.length;
 
-      await Groups.updateMany(
-        { _id: groupId },
-        {
-          $addToSet: {
-            participants: {
-              userId: difference[data]._id,
-              name: difference[data].name,
-            },
-          },
-        }
-      );
-    }
+    const studentIndex = index + 1;
 
-    return res.status(200).send({ message: "Group Updated Scuccessfully" });
+    await User.updateMany(
+      { _id: students._id },
+      {
+        $addToSet: {
+          payments: {
+            courseId: group.course,
+            courseName: courseData.name,
+            requiredPayments: courseData.price,
+            isOffered: false,
+            offerPrice: 0,
+            status: "pending",
+            completed: false,
+          },
+          activeCourses: {
+            course: group.course,
+          },
+        },
+      }
+    );
+
+    await Groups.updateMany(
+      { _id: groupId },
+      {
+        $addToSet: {
+          participants: {
+            userId: students._id,
+            name: students.name,
+            code: `${courseData.abbreviation}${groupYear}${startingDate}${
+              parseInt(numberOfParticipants) + studentIndex < 10
+                ? `0${parseInt(numberOfParticipants) + studentIndex}`
+                : parseInt(numberOfParticipants) + studentIndex
+            }`,
+          },
+        },
+      }
+    );
+
+    return res.status(200).send({ status: "Done" });
   } catch (error) {
     return res.status(500).send({ error: "Error !", message: error.message });
   }
 });
+
+// adding participants to group data
+// router.put("/students", auth, async (req, res) => {
+//   const { students, groupId } = req.body;
+
+//   try {
+//     const group = await Groups.findOne({ _id: groupId });
+
+//     const groupParticipants = group.participants;
+
+//     const difference = students.filter(
+//       (a) => !groupParticipants.some((s) => a._id === s.userId.toString())
+//     );
+
+//     const courseData = await Courses.findOne({ _id: group.course });
+
+//     const numberOfParticipants = groupParticipants.length;
+
+//     const studentCode = `${courseData.abbreviation}${moment(new Date()).format(
+//       "YY"
+//     )}${moment(new Date()).format("MM")}${
+//       parseInt(numberOfParticipants) + 1 < 10
+//         ? `0${parseInt(numberOfParticipants) + 1}`
+//         : parseInt(numberOfParticipants) + 1
+//     }`;
+
+//     for (let data in difference) {
+//       await User.updateMany(
+//         { _id: students[data]._id },
+//         {
+//           $addToSet: {
+//             payments: {
+//               courseId: group.course,
+//               courseName: courseData.name,
+//               requiredPayments: courseData.price,
+//               isOffered: false,
+//               offerPrice: 0,
+//               status: "pending",
+//               completed: false,
+//             },
+//             activeCourses: {
+//               course: group.course,
+//             },
+//           },
+//         }
+//       );
+
+//       await Groups.updateMany(
+//         { _id: groupId },
+//         {
+//           $addToSet: {
+//             participants: {
+//               userId: difference[data]._id,
+//               name: difference[data].name,
+//               code: studentCode,
+//             },
+//           },
+//         }
+//       );
+//     }
+
+//     return res.status(200).send({ message: "Group Updated Scuccessfully" });
+//   } catch (error) {
+//     return res.status(500).send({ error: "Error !", message: error.message });
+//   }
+// });
 
 router.put("/attendance", auth, async (req, res) => {
   const { groupId, newAttendance } = req.body;

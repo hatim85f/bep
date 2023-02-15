@@ -57,7 +57,7 @@ export const createGroup = (group) => {
   };
 };
 
-export const editGroup = (groupId, students, group) => {
+export const editGroup = (groupId, students, group, index) => {
   return async (dispatch, getState) => {
     const { token } = getState().auth;
 
@@ -67,7 +67,7 @@ export const editGroup = (groupId, students, group) => {
         "Content-Type": "application/json",
         "x-auth-token": token,
       },
-      body: JSON.stringify({ students, groupId }),
+      body: JSON.stringify({ students, groupId, index }),
     });
 
     const resData = await response.json();

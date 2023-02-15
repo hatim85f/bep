@@ -48,15 +48,7 @@ const AppNavigator = (props) => {
         <Header />
         {windowSize.current[0] > "800" && <NavItems />}
       </div>
-      <main>
-        {props.children}
-        {windowSize.current[0] <= "800" && <SideMenu />}
-        <AiOutlineMenu
-          className={openMenu ? classes.menuOpened : classes.menu}
-          onClick={() => setOpenMenu(!openMenu)}
-        />
-        <SideMenu openMenu={openMenu} close={() => setOpenMenu(false)} />
-      </main>
+      <main>{props.children}</main>
     </div>
   );
 };
